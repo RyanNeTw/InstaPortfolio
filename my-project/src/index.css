@@ -4,4 +4,8 @@
 
 body {
     background-color: #020202;
+    max-height: 100vh;
+}
+.height {
+    max-height: 40rem;
 }

@@ -1,4 +1,4 @@
-import { ConnexionType, Follower, ReposType } from "../types/gitHubTypes"
+import { ConnexionType, Follower, Following, Organisation, ReposType } from "../types/gitHubTypes"
 
 type error = {
     status: boolean,
@@ -8,32 +8,58 @@ type error = {
     }
 }
 
-const  GetInfoAccount = async (): Promise<ConnexionType | error> =>{
+const  GetInfoAccount = async (): Promise<{status: boolean, data: ConnexionType} | error> =>{
     const res = await fetch("https://api.github.com/users/RyanNeTw")
     const user = await res.json()
     if(!res.ok) {
         return {status: res.ok, data: user}
     }
-    return user
+    return {status: res.ok ,data: user}
 }
 
-export const  GetInfoFollowers = async (): Promise<Follower[] | error> =>{
+export const  GetInfoFollowers = async (): Promise<{status: boolean, data: Follower[]} | error> =>{
      const res = await fetch("https://api.github.com/users/RyanNeTw/followers");
      const followers = await res.json();
      if(!res.ok) {
         return {status: res.ok, data: followers}
     }
-    return followers;
+    return {status: res.ok ,data: followers};
 }
 
-export const  GetInfoRepos = async (): Promise<ReposType[] | error> => {
+export const  GetInfoRepos = async (): Promise<{status: boolean, data: ReposType[]}| error> => {
     const res = await fetch("https://api.github.com/users/RyanNeTw/repos");
     const repos = await res.json();
     if(!res.ok) {
         return {status: res.ok, data: repos}
     }
-    return repos
+    return {status: res.ok ,data: repos};
 }
 
+export const  GetInfoOrga = async (): Promise<{status: boolean, data: Organisation[]}| error> => {
+    const res = await fetch("https://api.github.com/users/RyanNeTw/orgs");
+    const organisations = await res.json();
+    if(!res.ok) {
+        return {status: res.ok, data: organisations}
+    }
+    return {status: res.ok ,data: organisations};
+}
+
+export const  GetInfoFollowings = async (): Promise<{status: boolean, data: Following[]}| error> => {
+    const res = await fetch("https://api.github.com/users/RyanNeTw/following");
+    const followings = await res.json();
+    if(!res.ok) {
+        return {status: res.ok, data: followings}
+    }
+    return {status: res.ok ,data: followings};
+}
+
+export const  GetInfoReposLiked = async (): Promise<{status: boolean, data: ReposType[]}| error> => {
+    const res = await fetch("https://api.github.com/users/RyanNeTw/starred");
+    const reposLiked = await res.json();
+    if(!res.ok) {
+        return {status: res.ok, data: reposLiked}
+    }
+    return {status: res.ok ,data: reposLiked};
+}
 
 export default GetInfoAccount

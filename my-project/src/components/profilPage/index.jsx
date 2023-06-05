@@ -2,31 +2,61 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import Header from '../Header';
 import FollowersModal from '../modal/FollowersModal';
+import LocationSvg from '../../assets/location'
+import OrganisationList from './OrganisationList'
+import Repos from './Repos'
 
 function ProfilPage(props) {
-console.log(props.user)
     const [followersModal, setFollwersModal] = useState(false)
+    const [followingsModal, setFollwingsModal] = useState(false)
+    const [repoType, setRepoType] = useState(false)
+    const user = props.user.data
+
     function getFollowers(state) {
         setFollwersModal(!state)
     }
 
+    function getFollowings(state) {
+        setFollwingsModal(!state)
+    }
+
+    function ReposType(status) {
+        setRepoType(status)
+    }
+
     return(
         <>
-            {followersModal ? <FollowersModal  props={props.followers} /> : null}
+            {followersModal ? <FollowersModal  followers={props.followers} setAction={setFollwersModal} action={followersModal} text="Followers"/> : null}
+            {followingsModal ? <FollowersModal  followers={props.followings} setAction={setFollwingsModal} action={followingsModal} text="Followings"/> : null}
             <div  className="pl-36 pt-8">
                 <div className='flex flex-row justify-center gap-24 items-center'>
-                    <img src="https://avatars.githubusercontent.com/u/93142363?v=4" alt=''  className='rounded-full border-2 border-white'/>
+                    <img src={user.avatar_url} alt={user.avatar_url} className='rounded-full border-2 border-white w-36 h-36'/>
                     <div className='flex flex-col gap-4'>
-                        <h2 className='text-white font-bold'>{ props.user.login }</h2>
-                        <div className='flex flex-row gap-4'>
-                            <h3 className='text-white'><span className='font-bold'>3</span> posts</h3>
-                            <h3 className='text-white cursor-pointer' onClick={() => getFollowers(followersModal)}><span className='font-bold'>3</span> followers</h3>
-                            <h3 className='text-white'><span className='font-bold'>3</span> following</h3>
+                        <div className='flex flex-row gap-8'>
+                            <h2 className='text-white font-bold'>{user.login}</h2>
+                            <div className='flex flex-row items-center gap-2'>
+                                <LocationSvg />
+                                <h2 className='text-white'>{user.location}</h2>
+                            </div>
                         </div>
-                        <p className='text-white'>elkfnvlenfbvkdnloz ifius i sf bjshbf jsf jsf js</p>
+                        <div className='flex flex-row gap-4'>
+                            <h3 className='text-white'><span className='font-bold'>{user.public_repos}</span> posts</h3>
+                            <h3 className='text-white cursor-pointer hover:opacity-80' onClick={() => getFollowers(followersModal)}><span className='font-bold'>{ user.followers }</span> followers</h3>
+                            <h3 className='text-white cursor-pointer hover:opacity-80' onClick={() => getFollowings(followersModal)}><span className='font-bold'>{user.following}</span> following</h3>
+                        </div>
+                        <div className='border-dashed border rounded pl-4 pr-4 pt-2 pb-2 flex flex-col gap-4'>
+                            <p className='text-white'>{ user.bio }</p>
+                            <h5 className='text-white text-xs self-end'>- { user.name }</h5>
+                        </div>
                     </div>
                 </div>
+                {props?.organisation?.status ? (<OrganisationList organisation={props.organisation.data} />) : null}
             </div>
+            <div className='flex flex-row justify-center pt-8 gap-8'>
+                <h3 className={`text-white cursor-pointer hover:opacity-60 ${!repoType ? 'text-xl' : 'text-l opacity-80'} `} onClick={() => ReposType(false)}>My Repos</h3>
+                <h3 className={`text-white cursor-pointer hover:opacity-60  ${repoType ? 'text-xl' : 'text-l opacity-80'}`} onClick={() => ReposType(true)}>Repos liked</h3>
+            </div>
+            {repoType ? <Repos repos={props.reposLiked} /> : <Repos repos={props.repos} /> }
             <Header />
         </>
     )
@@ -34,8 +64,11 @@ console.log(props.user)
 
 ProfilPage.propTypes = {
     user: PropTypes.object.isRequired,
-    repos: PropTypes.object.isRequired,
-    followers: PropTypes.object.isRequired,
+    repos: PropTypes.array.isRequired,
+    followers: PropTypes.array.isRequired,
+    organisation: PropTypes.array.isRequired,
+    followings: PropTypes.array.isRequired,
+    reposLiked: PropTypes.array.isRequired
   };
 
 

@@ -15,7 +15,7 @@ const { repos } = props
             <h1 className="text-white text-3xl">Loading...</h1>
           </div>
           <div>
-            {!repos.status || !user.status ? (<h3 className='text-white'> {'>'} {repos.data.message} </h3>) : null}
+            {!repos?.status || !user?.status ? (<h3 className='text-white'> {'>'} {repos?.data?.message} </h3>) : null}
           </div>
         </div>
       </>
@@ -23,8 +23,8 @@ const { repos } = props
 }
 
 Loader.propTypes = {
-    user: PropTypes.object.isRequired,
-    repos: PropTypes.object.isRequired 
+    user: PropTypes.object,
+    repos: PropTypes.array 
   };
 
 export default Loader
