@@ -3,6 +3,7 @@ import CopyModal from './CopyModal';
 import { useState } from 'react';
 import DotsSvg from '../../assets/Dots';
 import HeartSvg from '../../assets/Heart';
+import { Link } from 'react-router-dom'
 
 function PostModal(props) {
 
@@ -19,26 +20,46 @@ function PostModal(props) {
         setCloseModal(!closeModal)
         console.log(closeModal)
     }
+
+    const imageUrl = repo.topics[0] + '.png'
+//<img src={`${repo.topics[0]}.png`} className='h-96' alt={repo.topics[0]} />
+//<div className={`bg-[url(${repo.topics[0]}.png)] h-96 w-96 bg-no-repeat bg-cover`}></div>
+//<div className='cursor-pointer' onClick={() => closeImageModalFunction(repo)} style={{ backgroundImage: `url(${imageUrl})`, width: '24rem', height: '24rem', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
     return(
         <>
             { closeModal ? <CopyModal repo={repo} setAction={setCloseModal()} action={closeModal} /> : null}
-            <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-zinc-800 rounded-lg flex flex-row'>
-                <div className='w-100 h-96 bg-white'></div>
-                <div className='p-4 flex flex-col gap-4 justify-between' >
-                    <div className='border-b border-zinc-600 flex flex-row justify-between items-center gap-24'>
-                        <div className='flex flex-row gap-2 items-center'>
-                            <img src={repo.owner.avatar_url} alt={repo.owner.avatar_url} className='rounded-full w-6 h-6'/>
-                            <h3 className='text-white font-bold'>{repo.owner.login}</h3>
+            <div className='absolute z-30 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-zinc-800 rounded-lg flex flex-row'>
+               {
+                !repo.topics[0] ?
+                    <div className='w-96 h-96 bg-zinc-800  flex justify-center items-center'>
+                         <h3 className='text-white'>Not foto</h3>
+                    </div> 
+                :
+                    <>
+                        <img src={`${imageUrl}`} style={{width: '60vh', maxHeight: '80vh' }} alt={repo.topics[0]} />
+                    </>
+               }
+                <div className='p-4 flex flex-col gap-4 min-w-36 justify-between bg-zinc-800' >
+                    <div className='flex flex-col gap-4'>
+                        <div className='border-b border-zinc-600 flex flex-row justify-between items-center gap-24'>
+                            <div className='flex flex-row gap-2 items-center'>
+                                <img src={repo.owner.avatar_url} alt={repo.owner.avatar_url} className='rounded-full w-6 h-6'/>
+                                <Link to="/profil" className='text-white font-bold'>{repo.owner.login}</Link>
+                            </div>
+                            <div className='flex flex-row items-center gap-2'>
+                                <span className='cursor-pointer' onClick={() => CloseModalFunction()}>
+                                    <DotsSvg color="fill-white"/>
+                                </span>
+                                <span className='cursor-pointer text-white text-xl' onClick={() => closePost()}>X</span>
+                            </div>
                         </div>
-                        <div className='flex flex-row items-center gap-2'>
-                            <span className='cursor-pointer' onClick={() => CloseModalFunction()}>
-                                <DotsSvg color="fill-white"/>
-                            </span>
-                            <span className='cursor-pointer text-white text-xl' onClick={() => closePost()}>X</span>
+                        <div>
+                            <h3 className='text-white'>
+                                <Link to="/profil" className='font-bold'>
+                                    {repo.owner.login} </Link> 
+                                {repo.description}
+                            </h3>
                         </div>
-                    </div>
-                    <div>
-                        <h3 className='text-white'>{repo.description}</h3>
                     </div>
                     <div className='flex flex-row border-b border-zinc-600 pb-2 justify-between'>
                         <div className='flex flex-row gap-2 items-center'>

@@ -35,7 +35,18 @@ function Home(props) {
                         const pdf = {
                             html_url: "CvRyanEzZerqti2023Image.png"
                         }
-                        if((index + 1) % 4 === 0 && index != 0) {
+                        if((index) % 4 === 0 && index != 0) {
+                                const cvRepo = {
+                                    owner: {
+                                        avatar_url: repo.owner.avatar_url,
+                                        login: repo.owner.login
+                                    },
+                                    topics: ["CvRyanEzZerqti2023Image"],
+                                    description: "Bonjour a vous ! C'est mon Cv, il est beau hein ?",
+                                    stargazers_count: 45,
+                                    created_at: "2023-04-02T04"
+
+                                }
                             return(
                                 <div key={index}>
                                     <div className="w-96 flex flex-col justify-center gap-4">
@@ -50,7 +61,7 @@ function Home(props) {
                                             </span>
                                         </div>
                                         <div className='flex justify-center'>
-                                            <img src={CvRyanEzZerqti2023Image} alt="Cv Ryan Ez Zerqti" className='overflow-auto h-96' onClick={() => closeImageModalFunction(repo)}/>
+                                            <img src={CvRyanEzZerqti2023Image} alt="Cv Ryan Ez Zerqti" className='cursor-pointer overflow-auto h-96' onClick={() => closeImageModalFunction(cvRepo)}/>
                                         </div>
                                         <div>
                                             <div>
@@ -68,7 +79,7 @@ function Home(props) {
                                 </div>
                             )
                         }
-
+                        const imageUrl = repo.topics[0] + '.png'
                         return(
                             <div key={index} className="w-96 flex flex-col justify-center gap-4">
                                 <div className='flex flex-row justify-between items-center'>
@@ -81,7 +92,13 @@ function Home(props) {
                                         <DotsSvg color={"fill-white"} />
                                     </span>
                                 </div>
-                                <div className='w-100 h-96 bg-white' onClick={() => closeImageModalFunction(repo)}></div>
+                                {
+                                    !repo.topics[0] ?
+                                        <div className='w-96 h-96 bg-zinc-800 cursor-pointe' onClick={() => closeImageModalFunction(repo)}></div>
+                                    :
+                                        <div className='cursor-pointer' onClick={() => closeImageModalFunction(repo)} style={{ backgroundImage: `url(${imageUrl})`, width: '24rem', height: '24rem', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
+
+                                }
                                 <div>
                                     <div>
                                         <div className='flex flex-row gap-2 items-center'>
