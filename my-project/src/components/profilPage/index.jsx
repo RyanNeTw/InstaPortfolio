@@ -5,6 +5,7 @@ import FollowersModal from '../modal/FollowersModal';
 import LocationSvg from '../../assets/location'
 import OrganisationList from './OrganisationList'
 import Repos from './Repos'
+import { Link } from 'react-router-dom'
 
 function ProfilPage(props) {
     const [followersModal, setFollwersModal] = useState(false)
@@ -31,13 +32,14 @@ function ProfilPage(props) {
             <div  className="pl-36 pt-8">
                 <div className='flex flex-row justify-center gap-24 items-center'>
                     <img src={user.avatar_url} alt={user.avatar_url} className='rounded-full border-2 border-white w-36 h-36'/>
-                    <div className='flex flex-col gap-4'>
+                    <div className='flex flex-col gap-4 items-center'>
                         <div className='flex flex-row gap-8'>
                             <h2 className='text-white font-bold'>{user.login}</h2>
                             <div className='flex flex-row items-center gap-2'>
                                 <LocationSvg />
                                 <h2 className='text-white'>{user.location}</h2>
                             </div>
+                            {user.hireable ? (<Link to="/cv" className='pl-4 pr-4 border border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black transition-all rounded'>Hire me</Link>) : null }
                         </div>
                         <div className='flex flex-row gap-4'>
                             <h3 className='text-white'><span className='font-bold'>{user.public_repos}</span> posts</h3>

@@ -1,25 +1,14 @@
 import PropTypes from 'prop-types';
-import CopyModal from './CopyModal';
-import { useState } from 'react';
-import DotsSvg from '../../assets/Dots';
 import HeartSvg from '../../assets/Heart';
 import { Link } from 'react-router-dom'
 
 function PostModal(props) {
-
     const repo = props.repo
-
-    const [closeModal, setCloseModal] = useState(false)
 
     function closePost() {
         props.setAction(!props.action)
     }
 
-    function CloseModalFunction(){
-        console.log(closeModal)
-        setCloseModal(!closeModal)
-        console.log(closeModal)
-    }
 
     const imageUrl = repo.topics[0] + '.png'
 //<img src={`${repo.topics[0]}.png`} className='h-96' alt={repo.topics[0]} />
@@ -27,7 +16,6 @@ function PostModal(props) {
 //<div className='cursor-pointer' onClick={() => closeImageModalFunction(repo)} style={{ backgroundImage: `url(${imageUrl})`, width: '24rem', height: '24rem', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
     return(
         <>
-            { closeModal ? <CopyModal repo={repo} setAction={setCloseModal()} action={closeModal} /> : null}
             <div className='absolute z-30 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-zinc-800 rounded-lg flex flex-row'>
                {
                 !repo.topics[0] ?
@@ -47,9 +35,6 @@ function PostModal(props) {
                                 <Link to="/profil" className='text-white font-bold'>{repo.owner.login}</Link>
                             </div>
                             <div className='flex flex-row items-center gap-2'>
-                                <span className='cursor-pointer' onClick={() => CloseModalFunction()}>
-                                    <DotsSvg color="fill-white"/>
-                                </span>
                                 <span className='cursor-pointer text-white text-xl' onClick={() => closePost()}>X</span>
                             </div>
                         </div>

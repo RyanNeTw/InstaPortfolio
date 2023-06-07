@@ -14,7 +14,7 @@ const experience = [
         "place": "Growth & Scale Factory",
         "role" : "Front developer",
         "description": "creation of a Shopify template that's quick and easy to learn, as well as some work on other templates.",
-        "time": "3mounths",
+        "time": "♾️",
         "type": "Free lance",
         "date_start": "01-09-2022",
         "date_end": "now",
