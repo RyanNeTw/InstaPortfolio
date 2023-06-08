@@ -59,7 +59,7 @@ function ProfilPage(props) {
                 <h3 className={`text-white cursor-pointer hover:opacity-60 ${!repoType ? 'text-xl' : 'text-l opacity-80'} `} onClick={() => ReposType(false)}>My Repos</h3>
                 <h3 className={`text-white cursor-pointer hover:opacity-60  ${repoType ? 'text-xl' : 'text-l opacity-80'}`} onClick={() => ReposType(true)}>Repos liked</h3>
             </div>
-            {repoType ? <Repos repos={props.reposLiked} /> : <Repos repos={props.repos} /> }
+            {repoType ? <Repos repos={props.reposLiked} /> : <Repos repos={props.repos} userEvents={props.userEvents.data} user={props.user.data}/> }
             <Header />
         </>
     )

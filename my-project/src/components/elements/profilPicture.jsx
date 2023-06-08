@@ -16,9 +16,9 @@ function ProfilPicture(props) {
             {openModal ? <EventsList user={user} events={events} setAction={setOpenModal} action={openModal} /> : null}
             {
                 events ?
-                <img src={user.avatar_url} alt={user.avatar_url} className={`rounded-full border-2 border-lime-400  ${props.width} ${props.height}`} onClick={()=>openModalFunction()}/> 
+                <img src={user.avatar_url} alt={user.avatar_url} className={`rounded-full border-2 border-lime-400 cursor-pointer  ${props.width} ${props.height}`} onClick={()=>openModalFunction()}/> 
                 :
-                <img src={user.avatar_url} alt={user.avatar_url} className={`rounded-full w-${props.width} h-${props.width}`}/>
+                <img src={user.avatar_url} alt={user.avatar_url} className={`rounded-full ${props.width} ${props.width}`}/>
             }
             
         </>

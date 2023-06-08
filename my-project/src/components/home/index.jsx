@@ -7,6 +7,7 @@ import HeartSvg from '../../assets/Heart';
 import Suggestions from './Suggestions'
 import PostModal from '../modal/PostModal'
 import CvRyanEzZerqti2023Image from '../../assets/CvRyanEzZerqti2023Image.png'
+import ProfilPicture from '../elements/profilPicture';
 
 function Home(props) {
     const repos = props.repos.data
@@ -24,6 +25,8 @@ function Home(props) {
         setCloseImageModal(!closeImageModal)
     }
 
+
+    //<img src={repo.owner.avatar_url} alt={repo.owner.avatar_url} className='rounded-full w-6 h-6'/>
     return(
         <>
             { closeModal ? <CopyModal setAction={setCloseModal} action={closeModal} repo={repoData} /> : null}
@@ -52,9 +55,9 @@ function Home(props) {
                                     <div className="w-96 flex flex-col justify-center gap-4">
                                         <div className='flex flex-row justify-between items-center'>
                                             <div className='flex flex-row items-center gap-2'>
-                                                <img src={repo.owner.avatar_url} alt={repo.owner.avatar_url} className='rounded-full w-6 h-6'/>
+                                                <ProfilPicture user={props.user.data} userEvents={props.userEvents.data} width={'w-8'} height={'w-8'} />
                                                 <h3 className='text-white font-bold'>{repo.owner.login}</h3>
-                                                <h5 className='text-sm text-white self-end'> 2023-04-02</h5>
+                                                <h5 className='text-sm text-white'> 2023-04-02</h5>
                                             </div>
                                             <span className='cursor-pointer' onClick={()=>CloseModal(pdf)}>
                                                 <DotsSvg color={"fill-white"} />
@@ -84,9 +87,9 @@ function Home(props) {
                             <div key={index} className="w-96 flex flex-col justify-center gap-4">
                                 <div className='flex flex-row justify-between items-center'>
                                     <div className='flex flex-row items-center gap-2'>
-                                        <img src={repo.owner.avatar_url} alt={repo.owner.avatar_url} className='rounded-full w-6 h-6'/>
+                                        <ProfilPicture user={props.user.data} userEvents={props.userEvents.data} width={'w-8'} height={'w-8'} />
                                         <h3 className='text-white font-bold'>{repo.owner.login}</h3>
-                                        <h5 className='text-sm text-white self-end'> {  repo.created_at.split('T')[0]}</h5>
+                                        <h5 className='text-sm text-white'> {  repo.created_at.split('T')[0]}</h5>
                                     </div>
                                     <span className='cursor-pointer' onClick={()=>CloseModal(repo)}>
                                         <DotsSvg color={"fill-white"} />
@@ -116,7 +119,7 @@ function Home(props) {
                     }) : null
                 }
                 </div>
-                <Suggestions user={props.user.data} followings={props.followings.data}  />
+                <Suggestions user={props.user.data} followings={props.followings.data} userEvents={props.userEvents.data} />
             </div>
             <Header />
         </>

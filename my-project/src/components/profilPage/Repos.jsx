@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
 import HeartSvg from '../../assets/Heart'
 import DotsSvg from '../../assets/Dots'
-import { useState } from 'react';
+import {useState } from 'react';
 import CopyModal from '../modal/CopyModal';
 import { Link } from 'react-router-dom'
 import PostModal from '../modal/PostModal';
+import ProfilPicture from '../elements/profilPicture';
 
 function Repos(props) {
     const repos = props.repos.data
@@ -22,6 +23,8 @@ function Repos(props) {
         setCloseImageModal(!closeImageModal)
     }
 
+
+    // <img src={repo.owner.avatar_url} alt={repo.owner.avatar_url} className='rounded-full w-8 h-8'/>
     return(
         <>
             { closeModal ? <CopyModal setAction={setCloseModal} action={closeModal} repo={repoData} /> : null}
@@ -37,7 +40,12 @@ function Repos(props) {
                                     <div key={index} className="m-4 inline-block max-w-64 p-4 rounded-2xl flex flex-col gap-2">
                                         <div className='flex flex-row justify-between items-center gap-2 border-b border-black'>
                                             <div className='flex flex-row items-center gap-2'>
-                                                <img src={repo.owner.avatar_url} alt={repo.owner.avatar_url} className='rounded-full w-8 h-8'/>
+                                                {
+                                                    props.userEvents ?
+                                                    <ProfilPicture user={props.user} userEvents={props.userEvents} width={'w-8'} height={'w-8'} />
+                                                    :
+                                                    <ProfilPicture user={repo.owner} userEvents={props.userEvents} width={'w-8'} height={'h-8'} />
+                                                }
                                                 <Link className='text-white cursor-pointer'>{repo.owner.login} </Link>
                                             </div>
                                             <span className='cursor-pointer' onClick={()=>CloseModal(repo)}>
@@ -78,6 +86,8 @@ function Repos(props) {
 
 Repos.propTypes = {
     repos: PropTypes.array.isRequired,
+    user: PropTypes.object.isRequired,
+    userEvents: PropTypes.array
   };
 
 export default Repos

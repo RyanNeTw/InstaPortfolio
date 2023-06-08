@@ -30,7 +30,7 @@ function EventsList(props) {
 
     return(
         <>
-            <div className='w-screen h-screen bg-black absolute z-1 opacity-80 top-0' onClick={() => {closeModalEventsList()}} ></div>
+            <div className='w-screen h-screen bg-black absolute z-1 opacity-80 top-0 left-0' onClick={() => {closeModalEventsList()}} ></div>
             <div className='absolute z-30 w-1/2 h-1/2 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border bg-zinc-800 rounded-lg overflow-auto'>
                 <div className='z-50 flex flex-row gap-2 absolute bottom-0 right-1/4 pb-4'>
                     {
@@ -60,11 +60,11 @@ function EventsList(props) {
                                         className='flex flex-col justify-center items-center gap-4'
                                         style={{ backgroundImage: `url(${url.toLocaleLowerCase()})`, width: '100%', height: '100%', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}
                                     >
-                                        <div className='bg-zinc-700 flex justfify-center w-full justify-center pt-2 pb-2 snapBar'>
-                                            <h3 className='text-white'> {event.type}</h3>
+                                        <div className='flex justfify-center w-full justify-center pt-2 pb-2 snapBar bg-zinc-50'>
+                                            <h3 className='text-black'> {event.type}</h3>
                                         </div>
-                                        <a href={urlRepo} target="_blank" rel="noopener noreferrer"  className='bg-white flex justfify-center w-1/2 rounded justify-center pt-2 pb-2 snapBar rotate-12'>
-                                            <h3 className='text-black hover:underline'> {event.repo.url}</h3>
+                                        <a href={urlRepo} target="_blank" rel="noopener noreferrer"  className='bg-black border border-white flex justfify-center w-1/2 rounded justify-center pt-2 pb-2 snapBar rotate-12'>
+                                            <h3 className='text-white hover:underline'> {event.repo.name}</h3>
                                         </a>
                                     </div>
                                 </div>
