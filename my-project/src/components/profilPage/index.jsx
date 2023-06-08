@@ -6,6 +6,7 @@ import LocationSvg from '../../assets/location'
 import OrganisationList from './OrganisationList'
 import Repos from './Repos'
 import { Link } from 'react-router-dom'
+import ProfilPicture from '../elements/profilPicture'
 
 function ProfilPage(props) {
     const [followersModal, setFollwersModal] = useState(false)
@@ -31,7 +32,7 @@ function ProfilPage(props) {
             {followingsModal ? <FollowersModal  followers={props.followings} setAction={setFollwingsModal} action={followingsModal} text="Followings"/> : null}
             <div  className="pl-36 pt-8">
                 <div className='flex flex-row justify-center gap-24 items-center'>
-                    <img src={user.avatar_url} alt={user.avatar_url} className='rounded-full border-2 border-white w-36 h-36'/>
+                    <ProfilPicture user={user} userEvents={props.userEvents.data} width={'w-36'} height={'h-36'} />
                     <div className='flex flex-col gap-4 items-center'>
                         <div className='flex flex-row gap-8'>
                             <h2 className='text-white font-bold'>{user.login}</h2>
@@ -70,7 +71,8 @@ ProfilPage.propTypes = {
     followers: PropTypes.array.isRequired,
     organisation: PropTypes.array.isRequired,
     followings: PropTypes.array.isRequired,
-    reposLiked: PropTypes.array.isRequired
+    reposLiked: PropTypes.array.isRequired,
+    userEvents: PropTypes.array.userEvents
   };
 
 

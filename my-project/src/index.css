@@ -9,3 +9,12 @@ body {
 .height {
     max-height: 40rem;
 }
+.snapBar > * {
+    opacity: 100%;
+}
+.snapBar {
+    opacity:99%;
+}
+.test > *, .test {
+    opacity: 100%;
+}

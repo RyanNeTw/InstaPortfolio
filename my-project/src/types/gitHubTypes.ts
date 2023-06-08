@@ -173,6 +173,56 @@ export type ReposType  = {
     default_branch:              string;
 }
 
+export type UserEvents = {
+    id:         string;
+    type:       string;
+    actor:      Actor;
+    repo:       Repo;
+    payload:    Payload;
+    public:     boolean;
+    created_at: Date;
+}
+
+export type Actor = {
+    id:            number;
+    login:         string;
+    display_login: string;
+    gravatar_id:   string;
+    url:           string;
+    avatar_url:    string;
+}
+
+export type Payload = {
+    repository_id: number;
+    push_id:       number;
+    size:          number;
+    distinct_size: number;
+    ref:           string;
+    head:          string;
+    before:        string;
+    commits:       Commit[];
+}
+
+export type Commit = {
+    sha:      string;
+    author:   Author;
+    message:  string;
+    distinct: boolean;
+    url:      string;
+}
+
+export type Author = {
+    email: string;
+    name:  string;
+}
+
+export type Repo = {
+    id:   number;
+    name: string;
+    url:  string;
+}
+
+
 export type Owner = {
     login:               string;
     id:                  number;

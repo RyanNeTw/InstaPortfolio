@@ -129,6 +129,7 @@ Home.propTypes = {
     followers: PropTypes.array.isRequired,
     organisation: PropTypes.array.isRequired,
     followings: PropTypes.array.isRequired,
+    userEvents: PropTypes.array.isRequired
   };
 
 export default Home

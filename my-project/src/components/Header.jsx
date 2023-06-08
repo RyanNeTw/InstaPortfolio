@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import LinkedIn from '../assets/LinkedIn'
 import GitHubSvg from "../assets/GitHub";
 import HomeSvg from "../assets/Home"
@@ -11,19 +11,27 @@ function Header() {
 
     return(
         <>
-        <nav className='absolute top-0 h-screen w-40 border-r border-white bg-zinc-950 flex flex-col justify-between pl-4 pr-2 pt-4 pb-4'>
-            <ul className='flex flex-col justify-center'>
+        <nav className='absolute top-0 h-screen w-40 border-r border-white flex flex-col justify-between pl-4 pr-2 pt-4 pb-4'>
+            <ul className='flex flex-col justify-center gap-2'>
               <li className="hover:bg-zinc-600 rounded transition">
-                <Link to="/"><h3 className="text-white p-4 flex flex-row items-center gap-2"><HomeSvg />Home</h3></Link>
+                <NavLink to="/" className={({ isActive }) => (isActive ? 'bg-zinc-600 flex flex-row items-center gap-2 text-white p-4 rounded' : 'flex flex-row items-center gap-2 text-white p-4')}>
+                  <HomeSvg />Home
+                </NavLink>
               </li>
               <li className="hover:bg-zinc-600 rounded transition">
-                <Link to="/cv"><h3 className="text-white p-4 flex flex-row items-center gap-2"><CurriculumSvg />CV</h3></Link>
+                <NavLink to="/cv" className={({ isActive }) => (isActive ? 'bg-zinc-600 flex flex-row items-center gap-2 text-white p-4 rounded' : 'flex flex-row items-center gap-2 text-white p-4')}>
+                  <CurriculumSvg />CV
+                  </NavLink>
               </li>
               <li className="hover:bg-zinc-600 rounded transition">
-                <Link to="/profil"><h3 className="text-white p-4 flex flex-row items-center gap-2"><AccountSvg />Profil</h3></Link>
+                <NavLink to="/profil" className={({ isActive }) => (isActive ? 'bg-zinc-600 flex flex-row items-center gap-2 text-white p-4 rounded' : 'flex flex-row items-center gap-2 text-white p-4')}>
+                  <AccountSvg />Profil
+                </NavLink>
               </li>
               <li className="hover:bg-zinc-600 rounded transition">
-                <Link to="/experience"><h3 className="text-white p-4 flex flex-row items-center gap-2"><ExperienceSvg />Experience</h3></Link>
+                <NavLink to="/experience" className={({ isActive }) => (isActive ? 'bg-zinc-600 flex flex-row items-center gap-2 text-white p-4 rounded' : 'flex flex-row items-center gap-2 text-white p-4')}>
+                  <ExperienceSvg />Experience
+                </NavLink>
               </li>
             </ul>
 

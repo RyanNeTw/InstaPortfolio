@@ -4,6 +4,7 @@ import DotsSvg from '../../assets/Dots'
 import { useState } from 'react';
 import CopyModal from '../modal/CopyModal';
 import { Link } from 'react-router-dom'
+import PostModal from '../modal/PostModal';
 
 function Repos(props) {
     const repos = props.repos.data
@@ -24,6 +25,7 @@ function Repos(props) {
     return(
         <>
             { closeModal ? <CopyModal setAction={setCloseModal} action={closeModal} repo={repoData} /> : null}
+            { closeImageModal ? <PostModal setAction={setCloseImageModal} action={closeImageModal} repo={repoData} /> : null}
             <div  className="pl-36 flex flex-col justify-center items-center w-4/5">
                 <h1 className="w-4/5 h-px bg-white mb-4"></h1>
                 <div className=''>
@@ -45,7 +47,7 @@ function Repos(props) {
                                         {
                                             !repo.topics[0] ?
                                                 <div className='w-72 h-64 bg-zinc-800 flex justify-center items-center' onClick={() => closeImageModalFunction(repo)}>
-                                                    <h3 className='text-white'>Not foto</h3>
+                                                    <h3 className='text-white'>Not picture</h3>
                                                 </div>
                                             :
                                                 <div className='cursor-pointer' onClick={() => closeImageModalFunction(repo)} style={{ backgroundImage: `url(${imageUrl})`, width: '18rem', height: '16rem', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}></div>

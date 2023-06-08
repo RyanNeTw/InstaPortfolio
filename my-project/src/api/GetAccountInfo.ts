@@ -1,4 +1,4 @@
-import { ConnexionType, Follower, Following, Organisation, ReposType } from "../types/gitHubTypes"
+import { ConnexionType, Follower, Following, Organisation, ReposType, UserEvents } from "../types/gitHubTypes"
 
 type error = {
     status: boolean,
@@ -60,6 +60,15 @@ export const  GetInfoReposLiked = async (): Promise<{status: boolean, data: Repo
         return {status: res.ok, data: reposLiked}
     }
     return {status: res.ok ,data: reposLiked};
+}
+
+export const  GetUserEvents = async (): Promise<{status: boolean, data: UserEvents[]}| error> => {
+    const res = await fetch("https://api.github.com/users/RyanNeTw/events");
+    const events = await res.json();
+    if(!res.ok) {
+        return {status: res.ok, data: events}
+    }
+    return {status: res.ok ,data: events};
 }
 
 export default GetInfoAccount

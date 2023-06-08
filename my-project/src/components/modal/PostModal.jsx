@@ -16,11 +16,12 @@ function PostModal(props) {
 //<div className='cursor-pointer' onClick={() => closeImageModalFunction(repo)} style={{ backgroundImage: `url(${imageUrl})`, width: '24rem', height: '24rem', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
     return(
         <>
+            <div className='bg-black opacity-80 absolute z-10 w-screen h-screen top-0' onClick={() => closePost()} ></div>
             <div className='absolute z-30 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-zinc-800 rounded-lg flex flex-row'>
                {
                 !repo.topics[0] ?
                     <div className='w-96 h-96 bg-zinc-800  flex justify-center items-center'>
-                         <h3 className='text-white'>Not foto</h3>
+                         <h3 className='text-white'>Not picture</h3>
                     </div> 
                 :
                     <>

@@ -1,5 +1,5 @@
 import GetInfoAccount from './api/GetAccountInfo'
-import { GetInfoRepos, GetInfoFollowers, GetInfoOrga, GetInfoFollowings, GetInfoReposLiked } from './api/GetAccountInfo'
+import { GetInfoRepos, GetInfoFollowers, GetInfoOrga, GetInfoFollowings, GetInfoReposLiked , GetUserEvents} from './api/GetAccountInfo'
 import ProfilPage from './components/profilPage'
 import Home from './components/home'
 import Curiculum from "./components/curiculum"
@@ -16,6 +16,7 @@ function App() {
   const [organisation, setOrganisation] = useState([])
   const [followings, setFollowings] = useState([])
   const [reposLiked, setReposLiked] = useState([])
+  const [userEvents, setUserEvents] = useState([])
   const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(()=>{
@@ -26,6 +27,7 @@ function App() {
       GetInfoOrga().then((data) => setOrganisation(data));
       GetInfoFollowings().then((data) => setFollowings(data));
       GetInfoReposLiked().then((data) => setReposLiked(data))
+      GetUserEvents().then((data) => setUserEvents(data))
       setIsLoaded(true)
     }
   }, [isLoaded])
@@ -40,8 +42,8 @@ if(!user || !user.status) {
     <>
     <BrowserRouter>
       <Routes>
-        <Route path="/profil" element={<ProfilPage user={user} repos={repos} followers={followers} organisation={organisation} followings={followings} reposLiked={reposLiked}/>}></Route> 
-        <Route path="/" element={<Home user={user} repos={repos} followers={followers} organisation={organisation} followings={followings}/>}></Route>
+        <Route path="/profil" element={<ProfilPage user={user} repos={repos} followers={followers} organisation={organisation} followings={followings} reposLiked={reposLiked} userEvents={userEvents}/>}></Route> 
+        <Route path="/" element={<Home user={user} repos={repos} followers={followers} organisation={organisation} followings={followings} userEvents={userEvents}/>}></Route>
         <Route path="/cv" element={<Curiculum />}></Route>
         <Route path="/experience" element={<Experience />}></Route>
       </Routes>

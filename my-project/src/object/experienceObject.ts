@@ -31,7 +31,7 @@ const experience = [
         "date_end": "now",
         "language": ["Typescript", "GraphSql", "Tailwind", "NextJs"],
         "website": "https://app.heybilly.io/"
-    },
+    }
 ]
 
 export const education = [
