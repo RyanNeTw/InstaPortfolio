@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import LinkedIn from '../assets/LinkedIn'
 import GitHubSvg from "../assets/GitHub";
 import HomeSvg from "../assets/Home"
-import AccountSvg from "../assets/Account"
+import AccountSvg from "../assets/account"
 import CurriculumSvg from "../assets/couriculum"
 import ExperienceSvg from "../assets/Experience"
 
