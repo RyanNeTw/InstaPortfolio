@@ -11,7 +11,8 @@ function FollowersModal(props) {
 
     return(
         <>
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border bg-zinc-800 rounded-lg">
+            <div className='bg-black opacity-80 absolute z-10 w-screen h-screen top-0' onClick={() => closeFollowersModal()} ></div>
+            <div className="absolute z-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border bg-zinc-800 rounded-lg">
                 <div className='flex flex-row justify-between border-b border-white'>
                     <h3 className='text-white p-4'>{props.text}</h3>
                     <span className='text-white p-4 cursor-pointer' onClick={() => closeFollowersModal()}>X</span>

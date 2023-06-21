@@ -56,4 +56,10 @@ export const  GetUserEventsByLogin = async (login: string): Promise<{status: boo
     return {status: res.ok ,data: events};
 }
 
+export const  GetUserReceivedEvents = async (): Promise<{status: boolean, data: UserEvents[]}| error> => {
+    const res = await fetch(`https://api.github.com/users/RyanNeTw/received_events`);
+    const events = await res.json();
+    return {status: res.ok ,data: events};
+}
+
 export default GetInfoAccount

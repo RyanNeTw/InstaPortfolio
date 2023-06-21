@@ -17,7 +17,7 @@ function PostModal(props) {
     return(
         <>
             <div className='bg-black opacity-80 absolute z-10 w-screen h-screen top-0' onClick={() => closePost()} ></div>
-            <div className='absolute z-30 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-zinc-800 rounded-lg flex flex-row'>
+            <div className='absolute z-30 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-zinc-800 rounded-lg flex flex-col-reverse md:flex-row'>
                {
                 !repo.topics[0] ?
                     <div className='w-96 h-96 bg-zinc-800  flex justify-center items-center'>
@@ -25,7 +25,7 @@ function PostModal(props) {
                     </div> 
                 :
                     <>
-                        <img src={`${imageUrl}`} style={{width: '60vh', maxHeight: '80vh' }} alt={repo.topics[0]} />
+                        <img src={`${imageUrl}`} style={{width: '60vh', maxHeight: '70vh' }} className="max-w-none" alt={repo.topics[0]} />
                     </>
                }
                 <div className='p-4 flex flex-col gap-4 min-w-36 justify-between bg-zinc-800' >
@@ -42,7 +42,8 @@ function PostModal(props) {
                         <div>
                             <h3 className='text-white'>
                                 <Link to="/profil" className='font-bold'>
-                                    {repo.owner.login} </Link> 
+                                    {repo.owner.login} 
+                                </Link> 
                                 {repo.description}
                             </h3>
                         </div>

@@ -4,8 +4,8 @@ function CuriculumViewer() {
 
     return(
         <>
-            <div className='overflow-auto pl-96'>
-                <img src={CvRyanEzZerqti2023Image} className="w-3/4"/>
+            <div className='overflow-auto'>
+                <img src={CvRyanEzZerqti2023Image} className="flex justify-center pb-20 md:pb-16"/>
             </div>
         </>
     )

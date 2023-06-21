@@ -31,8 +31,8 @@ function Home(props) {
         <>
             { closeModal ? <CopyModal setAction={setCloseModal} action={closeModal} repo={repoData} /> : null}
             { closeImageModal ? <PostModal setAction={setCloseImageModal} action={closeImageModal} repo={repoData} /> : null}
-            <div className="flex justify-center flex-row gap-24 h-screen">
-                <div className='flex flex-col items-center gap-12 overflow-scroll p-12'>
+            <div className="flex justify-between flex-col-reverse gap-4 md:gap-4 md:flex-row max-h-screen w-screen md:pl-[20%] md:pr-[20%] ">
+                <div className='flex flex-col items-center gap-12 overflow-scroll pt-8 pl-12 pr-12 pb-32'>
                 { repos ?
                     repos.map((repo, index) => {
                         const pdf = {
@@ -121,7 +121,7 @@ function Home(props) {
                 </div>
                 <Suggestions user={props.user.data} followings={props.followings.data} userEvents={props.userEvents.data} />
             </div>
-            <Header />
+            <Header userReceivedEvents={props.userReceivedEvents}/>
         </>
     )
 }
@@ -132,7 +132,8 @@ Home.propTypes = {
     followers: PropTypes.array.isRequired,
     organisation: PropTypes.array.isRequired,
     followings: PropTypes.array.isRequired,
-    userEvents: PropTypes.array.isRequired
+    userEvents: PropTypes.array.isRequired,
+    userReceivedEvents: PropTypes.array.userReceivedEvents
   };
 
 export default Home

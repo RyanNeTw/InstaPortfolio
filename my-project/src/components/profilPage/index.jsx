@@ -27,13 +27,14 @@ function ProfilPage(props) {
     }
 
     return(
-        <>
+    <>
+        <div className='flex flex-col h-screen overflow-auto'>
             {followersModal ? <FollowersModal  followers={props.followers} setAction={setFollwersModal} action={followersModal} text="Followers"/> : null}
             {followingsModal ? <FollowersModal  followers={props.followings} setAction={setFollwingsModal} action={followingsModal} text="Followings"/> : null}
-            <div  className="pl-36 pt-8">
-                <div className='flex flex-row justify-center gap-24 items-center'>
+            <div  className="">
+                <div className='flex flex-row justify-center gap-4 md:gap-24 items-center p-4'>
                     <ProfilPicture user={user} userEvents={props.userEvents.data} width={'w-36'} height={'h-36'} />
-                    <div className='flex flex-col gap-4 items-center'>
+                    <div className='flex flex-col gap-4 items-start'>
                         <div className='flex flex-row gap-8'>
                             <h2 className='text-white font-bold'>{user.login}</h2>
                             <div className='flex flex-row items-center gap-2'>
@@ -51,17 +52,18 @@ function ProfilPage(props) {
                             <p className='text-white'>{ user.bio }</p>
                             <h5 className='text-white text-xs self-end'>- { user.name }</h5>
                         </div>
+                        {props?.organisation?.status ? (<OrganisationList organisation={props.organisation.data} />) : null}
                     </div>
                 </div>
-                {props?.organisation?.status ? (<OrganisationList organisation={props.organisation.data} />) : null}
             </div>
-            <div className='flex flex-row justify-center pt-8 gap-8'>
+            <div className='flex flex-row justify-center pt-4 md:pt-8 gap-8'>
                 <h3 className={`text-white cursor-pointer hover:opacity-60 ${!repoType ? 'text-xl' : 'text-l opacity-80'} `} onClick={() => ReposType(false)}>My Repos</h3>
                 <h3 className={`text-white cursor-pointer hover:opacity-60  ${repoType ? 'text-xl' : 'text-l opacity-80'}`} onClick={() => ReposType(true)}>Repos liked</h3>
             </div>
             {repoType ? <Repos repos={props.reposLiked} /> : <Repos repos={props.repos} userEvents={props.userEvents.data} user={props.user.data}/> }
-            <Header />
-        </>
+        </div>
+        <Header userReceivedEvents={props.userReceivedEvents}/>
+    </>
     )
 }
 
@@ -72,7 +74,8 @@ ProfilPage.propTypes = {
     organisation: PropTypes.array.isRequired,
     followings: PropTypes.array.isRequired,
     reposLiked: PropTypes.array.isRequired,
-    userEvents: PropTypes.array.userEvents
+    userEvents: PropTypes.array.userEvents,
+    userReceivedEvents: PropTypes.array.userReceivedEvents
   };
 
 

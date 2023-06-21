@@ -29,9 +29,9 @@ function Repos(props) {
         <>
             { closeModal ? <CopyModal setAction={setCloseModal} action={closeModal} repo={repoData} /> : null}
             { closeImageModal ? <PostModal setAction={setCloseImageModal} action={closeImageModal} repo={repoData} /> : null}
-            <div  className="pl-36 flex flex-col justify-center items-center w-4/5">
+            <div  className="flex flex-col justify-center items-center">
                 <h1 className="w-4/5 h-px bg-white mb-4"></h1>
-                <div className=''>
+                <div>
                     <div className='overflow-auto height flex flex-wrap justify-center'>
                         {
                             repos ? repos.map((repo, index) => {

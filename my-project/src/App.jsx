@@ -1,5 +1,5 @@
 import GetInfoAccount from './api/GetAccountInfo'
-import { GetInfoRepos, GetInfoFollowers, GetInfoOrga, GetInfoFollowings, GetInfoReposLiked , GetUserEvents} from './api/GetAccountInfo'
+import { GetInfoRepos, GetInfoFollowers, GetInfoOrga, GetInfoFollowings, GetInfoReposLiked , GetUserEvents, GetUserReceivedEvents} from './api/GetAccountInfo'
 import ProfilPage from './components/profilPage'
 import Home from './components/home'
 import Curiculum from "./components/curiculum"
@@ -17,6 +17,7 @@ function App() {
   const [followings, setFollowings] = useState([])
   const [reposLiked, setReposLiked] = useState([])
   const [userEvents, setUserEvents] = useState([])
+  const [userReceivedEvents, setUserReceidedEvents] = useState([])
   const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(()=>{
@@ -28,6 +29,7 @@ function App() {
       GetInfoFollowings().then((data) => setFollowings(data));
       GetInfoReposLiked().then((data) => setReposLiked(data))
       GetUserEvents().then((data) => setUserEvents(data))
+      GetUserReceivedEvents().then((data) => setUserReceidedEvents(data))
       setIsLoaded(true)
     }
   }, [isLoaded])
@@ -42,10 +44,10 @@ if(!user || !user.status) {
     <>
     <BrowserRouter>
       <Routes>
-        <Route path="/profil" element={<ProfilPage user={user} repos={repos} followers={followers} organisation={organisation} followings={followings} reposLiked={reposLiked} userEvents={userEvents}/>}></Route> 
-        <Route path="/" element={<Home user={user} repos={repos} followers={followers} organisation={organisation} followings={followings} userEvents={userEvents}/>}></Route>
-        <Route path="/cv" element={<Curiculum />}></Route>
-        <Route path="/experience" element={<Experience />}></Route>
+        <Route path="/profil" element={<ProfilPage user={user} repos={repos} followers={followers} organisation={organisation} followings={followings} reposLiked={reposLiked} userEvents={userEvents} userReceivedEvents={userReceivedEvents}/>}></Route> 
+        <Route path="/" element={<Home user={user} repos={repos} followers={followers} organisation={organisation} followings={followings} userEvents={userEvents} userReceivedEvents={userReceivedEvents}/>}></Route>
+        <Route path="/cv" element={<Curiculum userReceivedEvents={userReceivedEvents} />}></Route>
+        <Route path="/experience" element={<Experience userReceivedEvents={userReceivedEvents}/>}></Route>
       </Routes>
     </BrowserRouter>
     </>
