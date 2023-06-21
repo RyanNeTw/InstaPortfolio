@@ -12,7 +12,7 @@ function Experience(props) {
                     experience.map((exp, index) => {
                         return(
                             <div key={index} className="flex flex-row">
-                                <div className='bg-white flex flex-col justify-center w-32'>
+                                <div className='bg-white flex flex-col justify-center w-28'>
                                     <h3 className='self-center pl-12 pr-12'>{exp.time}</h3>
                                 </div>
                                 <div className='bg-zinc-900 pl-4 pr-4 pt-2 pb-2 border boder-white rounded-tr-lg rounded-br-lg'>
@@ -48,7 +48,7 @@ function Experience(props) {
                     education.map((exp, index) => {
                         return(
                             <div key={index} className="flex flex-row">
-                                <div className='bg-white flex flex-col justify-center w-32'>
+                                <div className='bg-white flex flex-col justify-center w-28'>
                                     <h3 className='self-center pl-12 pr-12'>{exp.time}</h3>
                                 </div>
                                 <div className='bg-zinc-900 pl-4 pr-4 pt-2 pb-2 border boder-white rounded-tr-lg rounded-br-lg'>

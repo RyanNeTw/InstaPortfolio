@@ -5,6 +5,8 @@
 body {
     background-color: #020202;
     max-height: 100vh;
+    max-width: 100vw;
+    overflow: hidden;
 }
 .height {
     max-height: 40rem;
