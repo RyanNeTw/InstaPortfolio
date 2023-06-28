@@ -25,7 +25,7 @@ function PostModal(props) {
                     </div> 
                 :
                     <>
-                        <img src={`${imageUrl}`} style={{width: '60vh', maxHeight: '70vh' }} className="max-w-none" alt={repo.topics[0]} />
+                        <img src={`${imageUrl}`} style={{maxWidth: '60vw', maxHeight: '80vh' }} className="max-w-none" alt={repo.topics[0]} />
                     </>
                }
                 <div className='p-4 flex flex-col gap-4 min-w-36 justify-between bg-zinc-800' >

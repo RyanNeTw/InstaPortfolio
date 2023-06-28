@@ -88,7 +88,10 @@ console.log( reposLiked, searchUrl, user,"pofo")
             {followingsModal ? <FollowersModal  followers={followings} setAction={setFollwingsModal} action={followingsModal} text="Followings"/> : null}
             <div  className="">
                 <div className='flex flex-row justify-center gap-4 md:gap-24 items-center p-4'>
-                    <ProfilPicture user={user ? user : null} userEvents={userEvents ? userEvents : null } width={'w-36'} height={'h-36'} />
+                    <div className='flex flex-col gap-2 items-center'>
+                        <ProfilPicture user={user ? user : null} userEvents={userEvents ? userEvents : null } width={'w-36'} height={'h-36'} />
+                        {user.hireable ? (<Link to="/cv" className='animate-pulse block md:hidden pl-4 pr-4 border border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black transition-all rounded'>Hire me</Link>) : null }
+                    </div>
                     <div className='flex flex-col gap-4 items-start'>
                         <div className='flex flex-row gap-8'>
                             <h2 className='text-white font-bold'>{user.login ? user.login : null}</h2>
@@ -96,7 +99,7 @@ console.log( reposLiked, searchUrl, user,"pofo")
                                 <LocationSvg />
                                 <h2 className='text-white'>{user.location ? user.location : null}</h2>
                             </div>
-                            {user.hireable ? (<Link to="/cv" className='pl-4 pr-4 border border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black transition-all rounded'>Hire me</Link>) : null }
+                            {user.hireable ? (<Link to="/cv" className='animate-pulse hidden md:block pl-4 pr-4 border border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black transition-all rounded'>Hire me</Link>) : null }
                         </div>
                         <div className='flex flex-row gap-4'>
                             <h3 className='text-white'><span className='font-bold'>{user.public_repos ? user.public_repos : 0}</span> posts</h3>
