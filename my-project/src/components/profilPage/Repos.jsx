@@ -29,7 +29,7 @@ function Repos(props) {
         <>
             { closeModal ? <CopyModal setAction={setCloseModal} action={closeModal} repo={repoData} /> : null}
             { closeImageModal ? <PostModal setAction={setCloseImageModal} action={closeImageModal} repo={repoData} /> : null}
-            <div  className="flex flex-col justify-center items-center">
+            <div  className="flex flex-col justify-center items-center pb-44">
                 <h1 className="w-4/5 h-px bg-white mb-4"></h1>
                 <div>
                     <div className='overflow-auto height flex flex-wrap justify-center'>

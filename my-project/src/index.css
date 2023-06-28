@@ -28,3 +28,18 @@ body {
 .container::-webkit-scrollbar { 
     display: none;  /* Safari and Chrome */
 }
+
+.handShake {
+    animation: handShakeAnimation 1s linear infinite;
+}
+@keyframes handShakeAnimation {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(60deg);
+    }
+    100% {
+        transform: rotate(0deg);
+      }
+  }

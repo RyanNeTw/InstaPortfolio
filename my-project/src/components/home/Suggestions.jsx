@@ -16,7 +16,7 @@ function Suggestions(props) {
     return(
         <>
             {modalState ? <ContactModal setAction={setModalSate} action={modalState} /> : null}
-           <div className='pt-8 flex flex-col gap-4 pl-4 pr-4'>
+           <div className='pt-8 flex flex-col gap-4 pl-4 pr-4 pb-3 md:pb-32'>
             <div className='flex flex-row items-center justify-between gap-4'> 
                 <div to="/profil" className='flex flex-row items-center gap-4'>
                     <ProfilPicture user={user} userEvents={props.userEvents} width={'w-12'} height={'h-12'} />
@@ -33,7 +33,7 @@ function Suggestions(props) {
                     followings ? followings.map((following, index) => {
                         return(
                             <div key={index} className='flex flex-row items-center justify-between max-w-64 gap-2 md:gap-4'> 
-                                <Link to="/profil" className='flex flex-col items-center gap-4 md:flex-row'>
+                                <Link to={`/profil/${following.login}`} className='flex flex-col items-center gap-4 md:flex-row'>
                                     <img src={following.avatar_url} alt={following.avatar_url} className='rounded-full w-12 h-12'/>
                                     <div>
                                         <h3 className='text-white text-sm font-bold uppercase'>{following.login.substring(0,10)}</h3>

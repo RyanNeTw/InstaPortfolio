@@ -6,7 +6,6 @@ function CopyModal(props){
 
     const [copied, setCopied] = useState(false)
     const currentURL = window.location.href;
-    console.log(currentURL)
     function closeModal() {
         props.setAction(!props.action)
     }
@@ -21,7 +20,6 @@ function CopyModal(props){
 
     if(props.repo.html_url === "CvRyanEzZerqti2023Image.png") {
         const url = currentURL + "cv"
-        console.log(url)
         return(
             <>
             <div className='bg-black opacity-80 absolute z-10 w-screen h-screen top-0' onClick={() => closeModal()} ></div>

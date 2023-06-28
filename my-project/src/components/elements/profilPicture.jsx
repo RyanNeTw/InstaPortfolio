@@ -11,6 +11,15 @@ function ProfilPicture(props) {
         setOpenModal(!openModal)
     }
 
+    if(!user) {
+        return(
+            <>
+                <div className={`rounded-full border-2 border-lime-400 cursor-pointer bg-zinc-800  ${props.width} ${props.height}`}>
+                </div> 
+            </>
+        )
+    }
+
     return(
         <>
             {openModal ? <EventsList user={user} events={events} setAction={setOpenModal} action={openModal} /> : null}

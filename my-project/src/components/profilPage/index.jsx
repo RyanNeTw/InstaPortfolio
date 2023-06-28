@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Header from '../Header';
 import FollowersModal from '../modal/FollowersModal';
 import LocationSvg from '../../assets/location'
@@ -7,12 +7,47 @@ import OrganisationList from './OrganisationList'
 import Repos from './Repos'
 import { Link } from 'react-router-dom'
 import ProfilPicture from '../elements/profilPicture'
+import { GetInfoRepos, GetInfoFollowers, GetInfoOrga, GetInfoFollowings, GetInfoReposLiked , GetUserEvents, GetUserReceivedEvents} from '../../api/GetAccountInfo'
+import GetInfoAccount from '../../api/GetAccountInfo'
 
 function ProfilPage(props) {
     const [followersModal, setFollwersModal] = useState(false)
     const [followingsModal, setFollwingsModal] = useState(false)
     const [repoType, setRepoType] = useState(false)
-    const user = props.user.data
+    const searchUrl = window.location.href.split('/')[4]
+
+    const [ userSearch, setUserSearch ] = useState(null);
+    const [ followersSearch, setFollowersSearch ] = useState([]);
+    const [ reposSearch, setReposSearch ] = useState([]);
+    const [organisationSearch, setOrganisationSearch] = useState([])
+    const [followingsSearch, setFollowingsSearch] = useState([])
+    const [reposLikedSearch, setReposLikedSearch] = useState([])
+    const [userEventsSearch, setUserEventsSearch] = useState([])
+    const [userReceivedEventsSearch, setUserReceidedEventsSearch] = useState([])
+
+    useEffect(()=>{
+        if (searchUrl) {
+            GetInfoAccount(searchUrl).then((data) => setUserSearch(data));
+            GetInfoFollowers(searchUrl).then((data) => setFollowersSearch(data));
+            GetInfoRepos(searchUrl).then((data) => setReposSearch(data));
+            GetInfoOrga(searchUrl).then((data) => setOrganisationSearch(data));
+            GetInfoFollowings(searchUrl).then((data) => setFollowingsSearch(data));
+            GetInfoReposLiked(searchUrl).then((data) => setReposLikedSearch(data))
+            GetUserEvents(searchUrl).then((data) => setUserEventsSearch(data))
+            GetUserReceivedEvents(searchUrl).then((data) => setUserReceidedEventsSearch(data))
+        }
+      }, [])
+
+    const reposLiked = userSearch ? reposLikedSearch : props.reposLiked
+    const user = userSearch ? userSearch : props.user.data
+    const followers = followersSearch ? followersSearch : props.followers
+    const followings = followingsSearch ? followingsSearch : props.followings
+    const userEvents = userEventsSearch ? userEventsSearch : props.userEvents.data
+    const organization = organisationSearch ? organisationSearch : props.organisation
+    const userReceivedEvents = userReceivedEventsSearch ? userReceivedEventsSearch : props.userReceivedEvents
+    const repos = userSearch ? reposSearch : props.repos
+
+console.log( reposLiked, searchUrl, user,"pofo")
 
     function getFollowers(state) {
         setFollwersModal(!state)
@@ -26,33 +61,53 @@ function ProfilPage(props) {
         setRepoType(status)
     }
 
+    if (!user) {
+        return (
+            <>
+                <section className="flex items-center justify-center h-full">
+                    <div className="container flex flex-col items-center justify-center px-5 mx-auto my-8">
+                        <div className="max-w-md text-center">
+                            <h2 className="mb-8 font-extrabold text-9xl dark:text-gray-600">
+                                <span className="sr-only"></span>NO RESULT
+                            </h2>
+                            <p className="text-2xl font-semibold md:text-3xl">Sorry, we couldn{"'"}t find this page.</p>
+                            <p className="mt-4 mb-8 dark:text-gray-400">But dont worry, you can find plenty of other things on our homepage.</p>
+                            <Link to="/" className="px-8 py-3 font-semibold text-white rounded bg-black border-white border">Back to homepage</Link>
+                        </div>
+                    </div>
+                </section>
+                <Header userReceivedEvents={userReceivedEvents}/>
+            </>
+        )
+    }
+        
     return(
     <>
         <div className='flex flex-col h-screen overflow-auto'>
-            {followersModal ? <FollowersModal  followers={props.followers} setAction={setFollwersModal} action={followersModal} text="Followers"/> : null}
-            {followingsModal ? <FollowersModal  followers={props.followings} setAction={setFollwingsModal} action={followingsModal} text="Followings"/> : null}
+            {followersModal ? <FollowersModal  followers={followers} setAction={setFollwersModal} action={followersModal} text="Followers"/> : null}
+            {followingsModal ? <FollowersModal  followers={followings} setAction={setFollwingsModal} action={followingsModal} text="Followings"/> : null}
             <div  className="">
                 <div className='flex flex-row justify-center gap-4 md:gap-24 items-center p-4'>
-                    <ProfilPicture user={user} userEvents={props.userEvents.data} width={'w-36'} height={'h-36'} />
+                    <ProfilPicture user={user ? user : null} userEvents={userEvents ? userEvents : null } width={'w-36'} height={'h-36'} />
                     <div className='flex flex-col gap-4 items-start'>
                         <div className='flex flex-row gap-8'>
-                            <h2 className='text-white font-bold'>{user.login}</h2>
+                            <h2 className='text-white font-bold'>{user.login ? user.login : null}</h2>
                             <div className='flex flex-row items-center gap-2'>
                                 <LocationSvg />
-                                <h2 className='text-white'>{user.location}</h2>
+                                <h2 className='text-white'>{user.location ? user.location : null}</h2>
                             </div>
                             {user.hireable ? (<Link to="/cv" className='pl-4 pr-4 border border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black transition-all rounded'>Hire me</Link>) : null }
                         </div>
                         <div className='flex flex-row gap-4'>
-                            <h3 className='text-white'><span className='font-bold'>{user.public_repos}</span> posts</h3>
-                            <h3 className='text-white cursor-pointer hover:opacity-80' onClick={() => getFollowers(followersModal)}><span className='font-bold'>{ user.followers }</span> followers</h3>
-                            <h3 className='text-white cursor-pointer hover:opacity-80' onClick={() => getFollowings(followersModal)}><span className='font-bold'>{user.following}</span> following</h3>
+                            <h3 className='text-white'><span className='font-bold'>{user.public_repos ? user.public_repos : 0}</span> posts</h3>
+                            <h3 className='text-white cursor-pointer hover:opacity-80' onClick={() => getFollowers(followersModal)}><span className='font-bold'>{ user.followers ? user.followers  : 0}</span> followers</h3>
+                            <h3 className='text-white cursor-pointer hover:opacity-80' onClick={() => getFollowings(followersModal)}><span className='font-bold'>{user.following  ? user.following : 0}</span> following</h3>
                         </div>
                         <div className='border-dashed border rounded pl-4 pr-4 pt-2 pb-2 flex flex-col gap-4'>
-                            <p className='text-white'>{ user.bio }</p>
-                            <h5 className='text-white text-xs self-end'>- { user.name }</h5>
+                            <p className='text-white'>{ user.bio ? user.bio : 'Pas de bio' }</p>
+                            <h5 className='text-white text-xs self-end'>- { user.name ? user.name : searchUrl }</h5>
                         </div>
-                        {props?.organisation?.status ? (<OrganisationList organisation={props.organisation.data} />) : null}
+                        {organization.status ? (<OrganisationList organisation={organization.data} />) : null}
                     </div>
                 </div>
             </div>
@@ -60,9 +115,9 @@ function ProfilPage(props) {
                 <h3 className={`text-white cursor-pointer hover:opacity-60 ${!repoType ? 'text-xl' : 'text-l opacity-80'} `} onClick={() => ReposType(false)}>My Repos</h3>
                 <h3 className={`text-white cursor-pointer hover:opacity-60  ${repoType ? 'text-xl' : 'text-l opacity-80'}`} onClick={() => ReposType(true)}>Repos liked</h3>
             </div>
-            {repoType ? <Repos repos={props.reposLiked} /> : <Repos repos={props.repos} userEvents={props.userEvents.data} user={props.user.data}/> }
+            {repoType ? <Repos repos={reposLiked} /> : <Repos repos={repos} userEvents={userEvents.data} user={user.data}/> }
         </div>
-        <Header userReceivedEvents={props.userReceivedEvents}/>
+        <Header userReceivedEvents={userReceivedEvents}/>
     </>
     )
 }

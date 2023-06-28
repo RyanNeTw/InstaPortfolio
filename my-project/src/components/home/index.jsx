@@ -32,7 +32,7 @@ function Home(props) {
             { closeModal ? <CopyModal setAction={setCloseModal} action={closeModal} repo={repoData} /> : null}
             { closeImageModal ? <PostModal setAction={setCloseImageModal} action={closeImageModal} repo={repoData} /> : null}
             <div className="flex justify-between flex-col-reverse gap-4 md:gap-4 md:flex-row max-h-screen w-screen md:pl-[20%] md:pr-[20%] ">
-                <div className='flex flex-col items-center gap-12 overflow-scroll pt-8 pl-12 pr-12 pb-32'>
+                <div className='flex flex-col items-center gap-12 overflow-scroll pb-44 md:pb-52 pt-12'>
                 { repos ?
                     repos.map((repo, index) => {
                         const pdf = {
@@ -64,7 +64,7 @@ function Home(props) {
                                             </span>
                                         </div>
                                         <div className='flex justify-center'>
-                                            <img src={CvRyanEzZerqti2023Image} alt="Cv Ryan Ez Zerqti" className='cursor-pointer overflow-auto h-96' onClick={() => closeImageModalFunction(cvRepo)}/>
+                                            <img src={CvRyanEzZerqti2023Image} alt="Cv Ryan Ez Zerqti" className='cursor-pointer overflow-auto h-72 md:h-96 self-center' onClick={() => closeImageModalFunction(cvRepo)}/>
                                         </div>
                                         <div>
                                             <div>
@@ -84,7 +84,7 @@ function Home(props) {
                         }
                         const imageUrl = repo.topics[0] + '.png'
                         return(
-                            <div key={index} className="w-96 flex flex-col justify-center gap-4">
+                            <div key={index} className="flex flex-col justify-center gap-4">
                                 <div className='flex flex-row justify-between items-center'>
                                     <div className='flex flex-row items-center gap-2'>
                                         <ProfilPicture user={props.user.data} userEvents={props.userEvents.data} width={'w-8'} height={'w-8'} />
@@ -97,9 +97,9 @@ function Home(props) {
                                 </div>
                                 {
                                     !repo.topics[0] ?
-                                        <div className='w-96 h-96 bg-zinc-800 cursor-pointe' onClick={() => closeImageModalFunction(repo)}></div>
+                                        <div className='w-72 h-72 md:w-96 md:h-96 bg-zinc-800 cursor-pointe self-center' onClick={() => closeImageModalFunction(repo)}></div>
                                     :
-                                        <div className='cursor-pointer' onClick={() => closeImageModalFunction(repo)} style={{ backgroundImage: `url(${imageUrl})`, width: '24rem', height: '24rem', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
+                                        <div className='cursor-pointer w-72 h-72  md:w-96 md:h-96 self-center' onClick={() => closeImageModalFunction(repo)} style={{ backgroundImage: `url(${imageUrl})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
 
                                 }
                                 <div>
@@ -121,7 +121,7 @@ function Home(props) {
                 </div>
                 <Suggestions user={props.user.data} followings={props.followings.data} userEvents={props.userEvents.data} />
             </div>
-            <Header userReceivedEvents={props.userReceivedEvents}/>
+            <Header userReceivedEvents={props.userReceivedEvents} user={props.user} />
         </>
     )
 }

@@ -22,7 +22,6 @@ function EventsList(props) {
     }
     setNumber(number - 1)
    }
-   console.log(props)
 
    function closeModalEventsList () {
     props.setAction(!props.action)
@@ -32,13 +31,13 @@ function EventsList(props) {
         <>
             <div className='w-screen h-screen bg-black absolute z-1 opacity-80 top-0 left-0' onClick={() => {closeModalEventsList()}} ></div>
             <div className='absolute z-30 w-3/4 h-3/4 md:w-1/2 md:h-1/2 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border bg-zinc-800 rounded-lg overflow-auto'>
-                <div className='z-50 flex flex-row gap-2 absolute bottom-0 right-16 md:right-24 pb-4'>
+                <div className='z-50 flex flex-row gap-2 absolute bottom-0 right-8 md:right-24 pb-4'>
                     {
                         events.map((event, index) => {
                             return(
                                 <div 
                                     key={index} 
-                                    className={`w-2 md:w-8 h-2 rounded-full cursor-pointer ${ number == index ? 'bg-white' : 'bg-white opacity-50' } `}
+                                    className={`w-1 h-1 md:w-8 md:h-2 rounded-full cursor-pointer ${ number == index ? 'bg-white' : 'bg-white opacity-50' } `}
                                     onClick={() => changeNumber(index)}
                                 ></div>
                             )

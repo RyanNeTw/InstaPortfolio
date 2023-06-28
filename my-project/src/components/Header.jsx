@@ -1,17 +1,21 @@
 import { NavLink } from "react-router-dom";
-import LinkedIn from '../assets/LinkedIn'
+import LinkedInSvg from '../assets/LinkedIn'
 import GitHubSvg from "../assets/GitHub";
 import HomeSvg from "../assets/Home"
 import AccountSvg from "../assets/account"
 import CurriculumSvg from "../assets/couriculum"
 import ExperienceSvg from "../assets/Experience"
 import Notifications from "./elements/notifications"
+import HireMeModal from "./modal/HireMeModal"
 import PropTypes from 'prop-types';
+import SearchBarModal from './modal/SearchBarModal'
 
 function Header(props) {
 
     return(
         <>
+        {props?.user?.data?.hireable? <HireMeModal user={props.user.data} /> : null}
+        <SearchBarModal />
         <nav className='absolute bottom-0 border-t w-screen border-white flex flex-row justify-between pl-8 pr-8 pt-2 pb-2 bg-black '>
             <ul className='flex flex-row justify-center gap-4'>
               <li className="rounded transition">
@@ -41,7 +45,7 @@ function Header(props) {
             </ul>
 
             <ul className="flex flex-row items-center gap-4">
-              <a href="https://www.linkedin.com/in/ryan-ez-zerqti-964396236/" className="hover:opacity-70 hidden md:block" target="_blank" rel="noopener noreferrer"><LinkedIn /></a>
+              <a href="https://www.linkedin.com/in/ryan-ez-zerqti-964396236/" className="hover:opacity-70 hidden md:block" target="_blank" rel="noopener noreferrer"><LinkedInSvg /></a>
               <a href="https://github.com/RyanNeTw" className="hover:opacity-70 hidden md:block" target="_blank" rel="noopener noreferrer"><GitHubSvg /></a>
               <Notifications userReceivedEvents={props.userReceivedEvents}/>
             </ul>
@@ -51,7 +55,8 @@ function Header(props) {
 }
 
 Header.propTypes = {
-  userReceivedEvents: PropTypes.array.userReceivedEvents
+  userReceivedEvents: PropTypes.array.userReceivedEvents,
+  user: PropTypes.object.user
 };
 
 export default Header
