@@ -9,11 +9,13 @@ import { Link } from 'react-router-dom'
 import ProfilPicture from '../elements/profilPicture'
 import { GetInfoRepos, GetInfoFollowers, GetInfoOrga, GetInfoFollowings, GetInfoReposLiked , GetUserEvents, GetUserReceivedEvents} from '../../api/GetAccountInfo'
 import GetInfoAccount from '../../api/GetAccountInfo'
+import Loader from '../Loader';
 
 function ProfilPage(props) {
     const [followersModal, setFollwersModal] = useState(false)
     const [followingsModal, setFollwingsModal] = useState(false)
     const [repoType, setRepoType] = useState(false)
+    const [isLoaded, setIsLoaded] = useState(false)
     const searchUrl = window.location.href.split('/')[4]
 
     const [ userSearch, setUserSearch ] = useState(null);
@@ -26,7 +28,7 @@ function ProfilPage(props) {
     const [userReceivedEventsSearch, setUserReceidedEventsSearch] = useState([])
 
     useEffect(()=>{
-        if (searchUrl) {
+        if (!isLoaded && searchUrl) {
             GetInfoAccount(searchUrl).then((data) => setUserSearch(data));
             GetInfoFollowers(searchUrl).then((data) => setFollowersSearch(data));
             GetInfoRepos(searchUrl).then((data) => setReposSearch(data));
@@ -35,19 +37,30 @@ function ProfilPage(props) {
             GetInfoReposLiked(searchUrl).then((data) => setReposLikedSearch(data))
             GetUserEvents(searchUrl).then((data) => setUserEventsSearch(data))
             GetUserReceivedEvents(searchUrl).then((data) => setUserReceidedEventsSearch(data))
+            setIsLoaded(true)
         }
-      }, [])
+      }, [isLoaded])
 
     const reposLiked = userSearch ? reposLikedSearch : props.reposLiked
-    const user = userSearch ? userSearch : props.user.data
-    const followers = followersSearch ? followersSearch : props.followers
-    const followings = followingsSearch ? followingsSearch : props.followings
-    const userEvents = userEventsSearch ? userEventsSearch : props.userEvents.data
-    const organization = organisationSearch ? organisationSearch : props.organisation
-    const userReceivedEvents = userReceivedEventsSearch ? userReceivedEventsSearch : props.userReceivedEvents
+    const user = userSearch ? userSearch.data : props.user.data
+    const followers = userSearch ? followersSearch : props.followers
+    const followings = userSearch ? followingsSearch : props.followings
+    const userEvents = userSearch ? userEventsSearch.data : props.userEvents.data
+    const organization = userSearch ? organisationSearch : props.organisation
+    const userReceivedEvents = userSearch ? userReceivedEventsSearch : props.userReceivedEvents
     const repos = userSearch ? reposSearch : props.repos
 
-console.log( reposLiked, searchUrl, user,"pofo")
+      console.log(user)
+      
+    if(!isLoaded && searchUrl != undefined) {
+        console.log("pvdf", userSearch)
+        return(
+            <>
+                <Loader />
+                <Header userReceivedEvents={userReceivedEvents}/>
+            </>
+        )
+    }
 
     function getFollowers(state) {
         setFollwersModal(!state)
@@ -89,25 +102,25 @@ console.log( reposLiked, searchUrl, user,"pofo")
             <div  className="">
                 <div className='flex flex-row justify-center gap-4 md:gap-24 items-center p-4'>
                     <div className='flex flex-col gap-2 items-center'>
-                        <ProfilPicture user={user ? user : null} userEvents={userEvents ? userEvents : null } width={'w-36'} height={'h-36'} />
+                        <ProfilPicture user={user ? user : user.data} userEvents={userEvents ? userEvents : null } width={'w-36'} height={'h-36'} />
                         {user.hireable ? (<Link to="/cv" className='animate-pulse block md:hidden pl-4 pr-4 border border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black transition-all rounded'>Hire me</Link>) : null }
                     </div>
                     <div className='flex flex-col gap-4 items-start'>
                         <div className='flex flex-row gap-8'>
-                            <h2 className='text-white font-bold'>{user.login ? user.login : null}</h2>
+                            <h2 className='text-white font-bold uppercase'>{user.login ? user.login : user.data.login}</h2>
                             <div className='flex flex-row items-center gap-2'>
                                 <LocationSvg />
-                                <h2 className='text-white'>{user.location ? user.location : null}</h2>
+                                <h2 className='text-white'>{user.location ? user.location : user.data.location}</h2>
                             </div>
                             {user.hireable ? (<Link to="/cv" className='animate-pulse hidden md:block pl-4 pr-4 border border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black transition-all rounded'>Hire me</Link>) : null }
                         </div>
                         <div className='flex flex-row gap-4'>
-                            <h3 className='text-white'><span className='font-bold'>{user.public_repos ? user.public_repos : 0}</span> posts</h3>
-                            <h3 className='text-white cursor-pointer hover:opacity-80' onClick={() => getFollowers(followersModal)}><span className='font-bold'>{ user.followers ? user.followers  : 0}</span> followers</h3>
-                            <h3 className='text-white cursor-pointer hover:opacity-80' onClick={() => getFollowings(followersModal)}><span className='font-bold'>{user.following  ? user.following : 0}</span> following</h3>
+                            <h3 className='text-white'><span className='font-bold'>{user.public_repos ? user.public_repos : user.data.public_repos}</span> posts</h3>
+                            <h3 className='text-white cursor-pointer hover:opacity-80' onClick={() => getFollowers(followersModal)}><span className='font-bold'>{ user.followers ? user.followers  : user.data.followers}</span> followers</h3>
+                            <h3 className='text-white cursor-pointer hover:opacity-80' onClick={() => getFollowings(followersModal)}><span className='font-bold'>{user.following  ? user.following : user.data.following}</span> following</h3>
                         </div>
                         <div className='border-dashed border rounded pl-4 pr-4 pt-2 pb-2 flex flex-col gap-4'>
-                            <p className='text-white'>{ user.bio ? user.bio : 'Pas de bio' }</p>
+                            <p className='text-white'>{ user.bio ? user.bio : user.data.bio}</p>
                             <h5 className='text-white text-xs self-end'>- { user.name ? user.name : searchUrl }</h5>
                         </div>
                         {organization.status ? (<OrganisationList organisation={organization.data} />) : null}
@@ -118,12 +131,13 @@ console.log( reposLiked, searchUrl, user,"pofo")
                 <h3 className={`text-white cursor-pointer hover:opacity-60 ${!repoType ? 'text-xl' : 'text-l opacity-80'} `} onClick={() => ReposType(false)}>My Repos</h3>
                 <h3 className={`text-white cursor-pointer hover:opacity-60  ${repoType ? 'text-xl' : 'text-l opacity-80'}`} onClick={() => ReposType(true)}>Repos liked</h3>
             </div>
-            {repoType ? <Repos repos={reposLiked} /> : <Repos repos={repos} userEvents={userEvents.data} user={user.data}/> }
+            {repoType ? <Repos repos={reposLiked} /> : <Repos repos={repos} userEvents={userEvents} user={user}/> }
         </div>
         <Header userReceivedEvents={userReceivedEvents}/>
     </>
     )
 }
+
 
 ProfilPage.propTypes = {
     user: PropTypes.object.isRequired,

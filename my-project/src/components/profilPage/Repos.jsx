@@ -55,7 +55,7 @@ function Repos(props) {
                                         {
                                             !repo.topics[0] ?
                                                 <div className='w-72 h-64 bg-zinc-800 flex justify-center items-center' onClick={() => closeImageModalFunction(repo)}>
-                                                    <h3 className='text-white'>Not picture</h3>
+                                                    <h3 className='text-white'>No picture</h3>
                                                 </div>
                                             :
                                                 <div className='cursor-pointer' onClick={() => closeImageModalFunction(repo)} style={{ backgroundImage: `url(${imageUrl})`, width: '18rem', height: '16rem', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}></div>

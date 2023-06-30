@@ -6,7 +6,7 @@ function FollowersModal(props) {
     function closeFollowersModal() {
         props.setAction(!props.action)
     }
-
+console.log(props)
 
 
     return(

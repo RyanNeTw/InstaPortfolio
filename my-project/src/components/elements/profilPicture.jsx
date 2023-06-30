@@ -3,31 +3,22 @@ import { useState } from 'react';
 import EventsList from '../modal/EventsList'
 
 function ProfilPicture(props) {
-    const user = props.user
-    const events = props.userEvents
     const [openModal, setOpenModal] = useState(false)
 
     function openModalFunction() {
         setOpenModal(!openModal)
     }
 
-    if(!user) {
-        return(
-            <>
-                <div className={`rounded-full border-2 border-lime-400 cursor-pointer bg-zinc-800  ${props.width} ${props.height}`}>
-                </div> 
-            </>
-        )
-    }
+    console.log(props.user, props.userEvents, "oifhvbu")
 
     return(
         <>
-            {openModal ? <EventsList user={user} events={events} setAction={setOpenModal} action={openModal} /> : null}
+            {openModal ? <EventsList user={props.user} events={props.userEvents} setAction={setOpenModal} action={openModal} /> : null}
             {
-                events ?
-                <img src={user.avatar_url} alt={user.avatar_url} className={`rounded-full border-2 border-lime-400 cursor-pointer  ${props.width} ${props.height}`} onClick={()=>openModalFunction()}/> 
+                props.userEvents ?
+                <img src={props.user.avatar_url} alt={props.user.avatar_url} className={`rounded-full border-2 border-lime-400 cursor-pointer  ${props.width} ${props.height}`} onClick={()=>openModalFunction()}/> 
                 :
-                <img src={user.avatar_url} alt={user.avatar_url} className={`rounded-full ${props.width} ${props.width}`}/>
+                <img src={props.user.avatar_url} alt={props.user.avatar_url} className={`rounded-full ${props.width} ${props.width}`}/>
             }
             
         </>

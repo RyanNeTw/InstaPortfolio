@@ -21,7 +21,7 @@ function PostModal(props) {
                {
                 !repo.topics[0] ?
                     <div className='w-96 h-96 bg-zinc-800  flex justify-center items-center'>
-                         <h3 className='text-white'>Not picture</h3>
+                         <h3 className='text-white'>No picture</h3>
                     </div> 
                 :
                     <>
@@ -41,8 +41,8 @@ function PostModal(props) {
                         </div>
                         <div>
                             <h3 className='text-white'>
-                                <Link to="/profil" className='font-bold'>
-                                    {repo.owner.login} 
+                                <Link to="/profil" className='font-bold pr-2'>
+                                    {repo.owner.login} :
                                 </Link> 
                                 {repo.description}
                             </h3>
@@ -50,7 +50,7 @@ function PostModal(props) {
                     </div>
                     <div className='flex flex-row border-b border-zinc-600 pb-2 justify-between'>
                         <div className='flex flex-row gap-2 items-center'>
-                            <HeartSvg color="fill-white"/>
+                            <HeartSvg color={ repo.stargazers_count > 1 ? "fill-white" : "fill-pink" } />
                             <h3 className='text-white'>{repo.stargazers_count}</h3>
                         </div>
                         <h3 className='text-white'>{ repo.created_at.split('T')[0]}</h3>
