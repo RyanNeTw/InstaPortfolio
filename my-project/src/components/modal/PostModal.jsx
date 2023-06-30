@@ -20,7 +20,7 @@ function PostModal(props) {
             <div className='absolute z-30 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-zinc-800 rounded-lg flex flex-col-reverse md:flex-row'>
                {
                 !repo.topics[0] ?
-                    <div className='w-96 h-96 bg-zinc-800  flex justify-center items-center'>
+                    <div className='bg-zinc-800  flex justify-center items-center' style={{maxWidth: '60vw', maxHeight: '80vh', minHeight: '20vh', minWidth: '40vw' }}>
                          <h3 className='text-white'>No picture</h3>
                     </div> 
                 :

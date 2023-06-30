@@ -6,7 +6,6 @@ function FollowersModal(props) {
     function closeFollowersModal() {
         props.setAction(!props.action)
     }
-console.log(props)
 
 
     return(
@@ -29,7 +28,7 @@ console.log(props)
                                     <a href={'https://github.com/' + follower.login}  className="pl-4 pr-4 rounded bg-white hover:bg-gray-300 cursor-pointer" target="_blank" rel="noopener noreferrer">Visit</a>
                                 </div>
                             )
-                    } ) : (<h3>Aucun Follower</h3>)
+                    } ) : (<h3 className='text-white'>No followers</h3>)
                 }
                 </div>
             </div>

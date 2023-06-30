@@ -13,7 +13,6 @@ const owner = 'RyanNeTw'
 const  GetInfoAccount = async (search = owner ): Promise<{status: boolean, data: ConnexionType | error}> =>{
     const res = await fetch(`https://api.github.com/users/${search}`)
     const user = await res.json()
-    console.log(user, search)
     return {status: res.ok ,data: user}
 }
 

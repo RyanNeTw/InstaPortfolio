@@ -9,8 +9,6 @@ function ProfilPicture(props) {
         setOpenModal(!openModal)
     }
 
-    console.log(props.user, props.userEvents, "oifhvbu")
-
     return(
         <>
             {openModal ? <EventsList user={props.user} events={props.userEvents} setAction={setOpenModal} action={openModal} /> : null}

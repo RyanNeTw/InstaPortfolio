@@ -69,7 +69,7 @@ function Repos(props) {
                                                 <h5 className='text-xs text-white'>{ repo.created_at.split('T')[0]}</h5>
                                             </div>
                                             <div className='flex flex-row items-center gap-2'>
-                                                <HeartSvg color="fill-white"/>
+                                                <HeartSvg color={ repo.stargazers_count >= 1 ? "fill-yellow-500" : "fill-white" }/>
                                                 <h4 className='text-white'>{ repo.stargazers_count}</h4>
                                             </div>
                                         </div>

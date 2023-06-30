@@ -23,7 +23,7 @@ function HireMeModal(props) {
                     <span className='text-white self-end cursor-pointer' onClick={() => closeHireMeFunction()}>X</span>
                     <div className='flex flex-col'>
                         <div className='flex flex-row gap-4 items-center justify-center'>
-                            <div className='flex flex-row gap-2'>
+                            <div className='flex flex-wrap gap-2'>
                                 <h3 className='text-white'>Hi, I{"'"}m</h3>
                                 <Link to="/profil" className='font-bold text-white underline'>{props.user.login}</Link> 
                             </div>
