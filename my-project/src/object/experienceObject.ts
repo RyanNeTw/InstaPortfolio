@@ -40,6 +40,49 @@ const experience = [
     }
 ]
 
+ export const skills = [
+    {
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/1200px-Node.js_logo.svg.png",
+        "image_alt" : "NodeJs's logo",
+        "website": "https://nodejs.org/en"
+    },
+    {
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/1200px-Unofficial_JavaScript_logo_2.svg.png",
+        "image_alt" : "JavaScript's logo",
+        "website": "https://www.javascript.com/"
+    },
+    {
+        "image_link": "https://grafikart.fr/uploads/icons/typescript.svg",
+        "image_alt" : "TypeScript's logo",
+        "website": "https://www.typescriptlang.org/"
+    },
+    {
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Git_icon.svg/2048px-Git_icon.svg.png",
+        "image_alt" : "Git's logo",
+        "website": "https://git-scm.com/doc"
+    },
+    {
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png",
+        "image_alt" : "ReactJs's logo",
+        "website": "https://fr.legacy.reactjs.org/"
+    },
+    {
+        "image_link": "https://www.drupal.org/files/project-images/nextjs-icon-dark-background.png",
+        "image_alt" : "Next's logo",
+        "website": "https://nextjs.org/"
+    },
+    {
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/1200px-Vue.js_Logo_2.svg.png",
+        "image_alt" : "Vue's logo",
+        "website": "https://vuejs.org/"
+    },
+    {
+        "image_link": " https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg",
+        "image_alt" : "Tailwind's logo",
+        "website": "https://tailwindcss.com/"
+    }
+]
+
 export const education = [
         {
             "place": "Epitech Digital",

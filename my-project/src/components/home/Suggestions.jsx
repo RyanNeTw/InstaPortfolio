@@ -25,7 +25,7 @@ function Suggestions(props) {
                         <h3 className='text-white text-xs'>{user.name}</h3>
                     </Link>
                 </div>
-                <h3 className='text-sky-700 font-bold text-xs cursor-pointer hover:text-sky-600' onClick={() => onpenModal()}>Contact me</h3>
+                <h3 className='text-yellow-700 font-bold text-xs cursor-pointer hover:text-yellow-500' onClick={() => onpenModal()}>Contact me</h3>
             </div>
             <h3 className='text-white opacity-70 text-sm font-bold'>Suggested for you</h3>
             <div className='flex flex-row md:flex-col gap-4 overflow-auto'>
@@ -39,7 +39,7 @@ function Suggestions(props) {
                                         <h3 className='text-white text-sm font-bold uppercase'>{following.login.substring(0,10)}</h3>
                                     </div>
                                 </Link>
-                                <a className='text-sky-700 font-bold text-xs cursor-pointer hover:text-sky-600 hidden md:block' href={following.html_url } target="_blank" rel="noopener noreferrer">Visit</a>
+                                <a className='text-yellow-700 font-bold text-xs cursor-pointer hover:text-yellow-500 hidden md:block' href={following.html_url } target="_blank" rel="noopener noreferrer">Visit</a>
                             </div>
                         )
                     }) : null

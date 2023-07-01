@@ -1,5 +1,5 @@
 import Header from '../Header'
-import experience, { education } from '../../object/experienceObject'
+import experience, { education, skills } from '../../object/experienceObject'
 import PropTypes from 'prop-types';
 import ArrowDivSvg from '../../assets/arrowDiv'
 import { useState } from 'react';
@@ -8,16 +8,26 @@ function Experience(props) {
 
     const [rotateArrowExp, setRotateArrowExp] = useState(true)
     const [rotateArrowEdu, setRotateArrowEdu] = useState(true)
+    const [rotateArrowskills, setRotateArrowSkills] = useState(true)
 
     function AppearList(change) {
-        change == "experience" ?  setRotateArrowExp(!rotateArrowExp) :  setRotateArrowEdu(!rotateArrowEdu)
+        change == "experience" ?  setRotateArrowExp(!rotateArrowExp) :  null
+        change == "education" ?  setRotateArrowEdu(!rotateArrowEdu) :  null
+        change == "skills" ?  setRotateArrowSkills(!rotateArrowskills) :  null
     }
+
+    console.log(skills)
 
     return(
         <>
-            <div className='flex flex-col gap-4 h-screen overflow-auto pl-4 pr-4 pt-4 pb-44 overflow-auto md:p-8'>
+            <div className='flex flex-col gap-4 h-screen overflow-auto pl-4 pr-4 pt-4 pb-56 overflow-auto md:pb-56 md:pl-8'>
                 <div className='flex flex-row gap-8 items-center'>
-                    <h1 className='text-white text-3xl'>Experiences ({experience?.length})</h1>
+                    <h1 className='text-white text-3xl flex flex-row gap-2 items-center'>
+                        Experiences
+                        <span className='bg-yellow-400 rounded-full pl-2 pr-2 text-xl text-black'>
+                            {experience?.length > 0 ? experience.length : null }
+                        </span>    
+                    </h1>
                     <span onClick={() => AppearList("experience")} className={`cursor-pointer ${rotateArrowExp ? "rotate-90" : ""} `}>
                         <ArrowDivSvg />
                     </span>
@@ -25,7 +35,7 @@ function Experience(props) {
                 { experience && rotateArrowExp ?
                     experience.map((exp, index) => {
                         return(
-                            <div key={index} className="flex flex-row border boder-white bg-zinc-900 rounded-lg">
+                            <div key={index} className="flex flex-row border boder-white bg-zinc-900 rounded-lg hover:shadow-white hover:shadow">
                                 <a href={exp.website} className='flex flex-col justify-center w-28' target="_blank" rel="noopener noreferrer">
                                     <img src={exp.image_link} alt={exp.image_alt} className="rounded-lg transition hover:opacity-50"/>
                                 </a>
@@ -60,15 +70,20 @@ function Experience(props) {
                 }
 
                 <div className='flex flex-row gap-8 items-center'>
-                    <h1 className='text-white text-3xl'>Education ({education?.length})</h1>
-                    <span onClick={() => AppearList()} className={`cursor-pointer ${rotateArrowEdu ? "rotate-90" : ""} `}>
+                    <h1 className='text-white text-3xl flex flex-row gap-2 items-center'>
+                        Education
+                        <span className='bg-yellow-400 rounded-full pl-2 pr-2 text-xl text-black'>
+                            {education?.length}
+                        </span>
+                    </h1>
+                    <span onClick={() => AppearList("education")} className={`cursor-pointer ${rotateArrowEdu ? "rotate-90" : ""} `}>
                             <ArrowDivSvg />
                     </span>
                 </div>
                 { education && rotateArrowEdu ?
                     education.map((exp, index) => {
                         return(
-                            <div key={index} className="flex flex-row border boder-white bg-zinc-900 rounded-lg">
+                            <div key={index} className="flex flex-row border boder-white bg-zinc-900 rounded-lg hover:shadow-white hover:shadow">
                                 <a href={exp.website} className='flex flex-col justify-center w-28' target="_blank" rel="noopener noreferrer">
                                     <img src={exp.image_link} alt={exp.image_alt} className="rounded-lg transition hover:opacity-50"/>
                                 </a>
@@ -90,6 +105,33 @@ function Experience(props) {
                         )
                     }) : null
                 }
+
+                <div className='flex flex-row gap-8 items-center'>
+                    <h1 className='text-white text-3xl flex flex-row gap-2 items-center'>
+                        Skills
+                        <span className='bg-yellow-400 rounded-full pl-2 pr-2 text-xl text-black'>
+                            {skills?.length}
+                        </span>
+                    </h1>
+                    <span onClick={() => AppearList("skills")} className={`cursor-pointer ${rotateArrowskills ? "rotate-90" : ""} `}>
+                            <ArrowDivSvg />
+                    </span>
+                </div>      
+
+                <div className='flex flex-wrap gap-8'>
+                    {
+                        skills && rotateArrowskills ? skills.map((skill, index) => {
+                            return (
+                                <div key={index} className="flex justify-center items-center border-t border-yellow-500 hover:shadow-yellow-500 hover:shadow-sm">
+                                    <a  href={skill.website} target="_blank" rel="noopener noreferrer" className=' p-4'>
+                                        <img src={skill.image_link} alt={skill.image_alt} className="w-28 rounded-lg transition"/>
+                                    </a>
+                                </div>
+                            )
+                        }) : null
+                    }
+                </div>
+
             </div>
             <Header userReceivedEvents={props.userReceivedEvents}  />
         </>

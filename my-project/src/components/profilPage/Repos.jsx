@@ -37,7 +37,7 @@ function Repos(props) {
                             repos ? repos.map((repo, index) => {
                                 const imageUrl = repo.topics[0] + '.png'
                                 return(
-                                    <div key={index} className="m-4 inline-block max-w-64 p-4 rounded-2xl flex flex-col gap-2">
+                                    <div key={index} className="m-4 inline-block max-w-64 p-4 rounded-2xl flex flex-col gap-2 hover:shadow hover:shadow-yellow-400 shadow-sm shadow-yellow-400">
                                         <div className='flex flex-row justify-between items-center gap-2 border-b border-black'>
                                             <div className='flex flex-row items-center gap-2'>
                                                 {

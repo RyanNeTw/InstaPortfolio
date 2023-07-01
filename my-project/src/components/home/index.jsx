@@ -51,7 +51,7 @@ function Home(props) {
 
                                 }
                             return(
-                                <div key={index}>
+                                <div key={index} className="shadow-sm shadow-yellow-400 hover:shadow-md hover:shadow-yellow-400">
                                     <div className="w-96 flex flex-col justify-center gap-4">
                                         <div className='flex flex-row justify-between items-center'>
                                             <div className='flex flex-row items-center gap-2'>
@@ -73,7 +73,7 @@ function Home(props) {
                                                     <h3 className='text-white'>45</h3>
                                                 </div>
                                             </div>
-                                            <div className='flex flex-row gap-2 items-center'>
+                                            <div className='flex flex-row gap-2 items-center pb-2'>
                                                 <h3 className='text-white text-sm font-bold'>{repo.owner.login} :</h3>
                                                 <h3 className='text-white text-sm'>Bonjour a vous !</h3>
                                             </div>
@@ -84,7 +84,7 @@ function Home(props) {
                         }
                         const imageUrl = repo.topics[0] + '.png'
                         return(
-                            <div key={index} className="flex flex-col justify-center gap-4">
+                            <div key={index} className="flex flex-col justify-center gap-4 shadow-sm shadow-yellow-400 hover:shadow-md hover:shadow-yellow-400">
                                 <div className='flex flex-row justify-between items-center'>
                                     <div className='flex flex-row items-center gap-2'>
                                         <ProfilPicture user={props.user.data} userEvents={props.userEvents.data} width={'w-8'} height={'w-8'} />
@@ -109,7 +109,7 @@ function Home(props) {
                                             <h3 className='text-white'>{ repo.stargazers_count}</h3>
                                         </div>
                                     </div>
-                                    <div className='flex flex-row gap-2 items-center'>
+                                    <div className='flex flex-row gap-2 items-center pb-2'>
                                         <h3 className='text-white text-sm font-bold'>{repo.owner.login} :</h3>
                                         <h3 className='text-white text-sm'>{repo.name}</h3>
                                     </div>

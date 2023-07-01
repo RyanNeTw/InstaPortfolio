@@ -53,15 +53,15 @@ function CopyModal(props){
                             Copied
                         </h3>
                     ) : (
-                        <h3 className="text-white border-b border-zinc-600 pt-4 pb-4 pl-24 pr-24 cursor-pointer whitespace-nowrap" onClick={() => copyLink(props.repo.html_url)}>
+                        <h3 className="text-white border-b hover:opacity-60  border-zinc-600 pt-4 pb-4 pl-24 pr-24 cursor-pointer whitespace-nowrap" onClick={() => copyLink(props.repo.html_url)}>
                             Copy link
                         </h3>
                     )
                 }
                 <a href={props?.repo?.html_url} target="_blank" rel="noopener noreferrer" >
-                    <h3 className="text-white border-b border-zinc-600 pt-4 pb-4 pl-24 pr-24 cursor-pointer whitespace-nowrap" onClick={() => closeModal()}>Go to link</h3>
+                    <h3 className="text-white hover:opacity-60 border-b border-zinc-600 pt-4 pb-4 pl-24 pr-24 cursor-pointer whitespace-nowrap" onClick={() => closeModal()}>Go to link</h3>
                 </a>
-                <h3 className="text-white pt-4 pb-4 pl-24 pr-24 cursor-pointer" onClick={() => closeModal()}>Cancel</h3>
+                <h3 className="text-white hover:opacity-60  pt-4 pb-4 pl-24 pr-24 cursor-pointer" onClick={() => closeModal()}>Cancel</h3>
             </div>
             <div className='bg-black opacity-80 z-10 absolute w-screen h-screen top-0' onClick={() => closeModal()} ></div>
         </>

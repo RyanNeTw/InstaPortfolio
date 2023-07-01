@@ -10,6 +10,7 @@ import ProfilPicture from '../elements/profilPicture'
 import { GetInfoRepos, GetInfoFollowers, GetInfoOrga, GetInfoFollowings, GetInfoReposLiked , GetUserEvents, GetUserReceivedEvents} from '../../api/GetAccountInfo'
 import GetInfoAccount from '../../api/GetAccountInfo'
 import Loader from '../Loader';
+import TwitterSvg from '../../assets/Twitter'
 
 function ProfilPage(props) {
     const [followersModal, setFollwersModal] = useState(false)
@@ -102,7 +103,17 @@ function ProfilPage(props) {
             <div  className="flex flex-col gap-2 md:items-center">
                 <div className='flex flex-row justify-center gap-4 md:gap-24 items-center p-4'>
                     <div className='flex flex-col gap-2 items-center'>
-                        <ProfilPicture user={user ? user : user.data} userEvents={userEvents ? userEvents : null } width={'w-36'} height={'h-36'} />
+                        <div className='flex flex-row items-end'>
+                            <ProfilPicture user={user ? user : user.data} userEvents={userEvents ? userEvents : null } width={'w-36'} height={'h-36'} />
+                            {
+                                user?.twitter_username 
+                                ? (
+                                    <a href={`https://twitter.com/+${user?.twitter_username}`} target="_blank" rel="noopener noreferrer">
+                                        <TwitterSvg />
+                                    </a>
+                                ) : null
+                            }
+                        </div>
                         {user.hireable ? (<Link to="/cv" className='animate-pulse block md:hidden pl-4 pr-4 border border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black transition-all rounded'>Hire me</Link>) : null }
                     </div>
                     <div className='flex flex-col gap-4 items-start'>

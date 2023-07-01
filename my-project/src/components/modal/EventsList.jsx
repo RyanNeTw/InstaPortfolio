@@ -37,7 +37,7 @@ function EventsList(props) {
                             return(
                                 <div 
                                     key={index} 
-                                    className={`w-1 h-1 md:w-4 md:h-2 rounded-full cursor-pointer ${ number == index ? 'bg-white' : 'bg-white opacity-50' } `}
+                                    className={`w-1 h-1 md:w-4 md:h-2 rounded-full cursor-pointer ${ number == index ? 'bg-yellow-400' : 'bg-white opacity-50' } `}
                                     onClick={() => changeNumber(index)}
                                 ></div>
                             )
