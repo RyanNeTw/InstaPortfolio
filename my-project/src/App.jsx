@@ -46,7 +46,7 @@ if(!user || !user.status) {
     <BrowserRouter>
       <Routes>
         <Route path="/profil" element={<ProfilPage user={user} repos={repos} followers={followers} organisation={organisation} followings={followings} reposLiked={reposLiked} userEvents={userEvents} userReceivedEvents={userReceivedEvents}/>}></Route> 
-        <Route path='/profil/:search' element={<ProfilPage user={user} repos={repos} followers={followers} organisation={organisation} followings={followings} reposLiked={reposLiked} userEvents={userEvents} userReceivedEvents={userReceivedEvents}/>} />
+        <Route path='/user/:search' element={<ProfilPage user={user} repos={repos} followers={followers} organisation={organisation} followings={followings} reposLiked={reposLiked} userEvents={userEvents} userReceivedEvents={userReceivedEvents}/>} />
         <Route path="/" element={<Home user={user} repos={repos} followers={followers} organisation={organisation} followings={followings} userEvents={userEvents} userReceivedEvents={userReceivedEvents}/>}></Route>
         <Route path="/cv" element={<Curiculum userReceivedEvents={userReceivedEvents} />}></Route>
         <Route path="/experience" element={<Experience userReceivedEvents={userReceivedEvents}/>}></Route>

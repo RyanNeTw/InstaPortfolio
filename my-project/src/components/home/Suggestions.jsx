@@ -33,7 +33,7 @@ function Suggestions(props) {
                     followings ? followings.map((following, index) => {
                         return(
                             <div key={index} className='flex flex-row items-center justify-between max-w-64 gap-2 md:gap-4'> 
-                                <Link to={`/profil/${following.login}`} className='flex flex-col items-center gap-4 md:flex-row'>
+                                <Link to={`/user/${following.login}`} className='flex flex-col items-center gap-4 md:flex-row'>
                                     <img src={following.avatar_url} alt={following.avatar_url} className='rounded-full w-12 h-12'/>
                                     <div>
                                         <h3 className='text-white text-sm font-bold uppercase'>{following.login.substring(0,10)}</h3>

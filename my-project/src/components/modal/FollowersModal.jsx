@@ -17,7 +17,7 @@ function FollowersModal(props) {
                     <span className='text-white p-4 cursor-pointer' onClick={() => closeFollowersModal()}>X</span>
                 </div>
                 <div className='p-4 flex flex-col gap-2 h-64 overflow-y-auto'>
-                { followers ? 
+                { followers && followers?.length >= 1? 
                     followers.map((follower, index) => {
                         return(
                                 <div key={index} className="flex flex-row justify-between items-center gap-24">
@@ -28,7 +28,7 @@ function FollowersModal(props) {
                                     <a href={'https://github.com/' + follower.login}  className="pl-4 pr-4 rounded bg-white hover:bg-gray-300 cursor-pointer" target="_blank" rel="noopener noreferrer">Visit</a>
                                 </div>
                             )
-                    } ) : (<h3 className='text-white'>No followers</h3>)
+                    } ) : (<h3 className='text-white flex justify-center'>No followers</h3>)
                 }
                 </div>
             </div>

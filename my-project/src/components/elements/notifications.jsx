@@ -48,7 +48,10 @@ function Notifications(props) {
                                         </div>
                                     </div>
                                 )
-                            }) : null
+                            }) 
+                            : (<>
+                                <h3 className='text-white flex justify-center pt-16 pb-16'>No notifications</h3>
+                            </>)
                         }
                     </div>
                 </> 

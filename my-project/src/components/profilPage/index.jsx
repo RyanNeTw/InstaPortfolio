@@ -74,7 +74,6 @@ function ProfilPage(props) {
     }
 
 
-    console.log(user, "nov")
     if (user.message == "Not Found") {
         return (
             <>
@@ -108,7 +107,7 @@ function ProfilPage(props) {
                     </div>
                     <div className='flex flex-col gap-4 items-start'>
                         <div className='flex flex-row gap-8'>
-                            <h2 className='text-white font-bold uppercase'>{user.login ? user.login : searchUrl}</h2>
+                            <a className='text-white font-bold uppercase hover:animate-pulse' href={user.html_url} target="_blank" rel="noopener noreferrer">{user.login ? user.login : searchUrl}</a>
                             <div className='flex flex-row items-center gap-2'>
                                 {user.location ? <LocationSvg /> : null}
                                 <h2 className='text-white'>{user.location ? user.location : null}</h2>

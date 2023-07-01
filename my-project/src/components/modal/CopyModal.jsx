@@ -46,7 +46,7 @@ function CopyModal(props){
 
     return(
         <>
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-zinc-800 rounded-lg flex flex-col items-center">
+            <div className="absolute z-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-zinc-800 rounded-lg flex flex-col items-center">
                 {
                     copied ? (
                         <h3 className="text-white border-b border-zinc-600 opacity-50 pt-4 pb-4 pl-24 pr-24 cursor-pointer whitespace-nowrap" onClick={() => copyLink(props.repo.html_url)}>
@@ -63,6 +63,7 @@ function CopyModal(props){
                 </a>
                 <h3 className="text-white pt-4 pb-4 pl-24 pr-24 cursor-pointer" onClick={() => closeModal()}>Cancel</h3>
             </div>
+            <div className='bg-black opacity-80 z-10 absolute w-screen h-screen top-0' onClick={() => closeModal()} ></div>
         </>
     )
 }

@@ -50,7 +50,7 @@ function PostModal(props) {
                     </div>
                     <div className='flex flex-row border-b border-zinc-600 pb-2 justify-between'>
                         <div className='flex flex-row gap-2 items-center'>
-                            <HeartSvg color={ repo.stargazers_count > 1 ? "fill-white" : "fill-pink" } />
+                            <HeartSvg color={ repo.stargazers_count < 1 ? "fill-white" : "fill-yellow-500" } />
                             <h3 className='text-white'>{repo.stargazers_count}</h3>
                         </div>
                         <h3 className='text-white'>{ repo.created_at.split('T')[0]}</h3>
