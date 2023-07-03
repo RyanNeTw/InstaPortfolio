@@ -29,20 +29,20 @@ function Repos(props) {
         <>
             { closeModal ? <CopyModal setAction={setCloseModal} action={closeModal} repo={repoData} /> : null}
             { closeImageModal ? <PostModal setAction={setCloseImageModal} action={closeImageModal} repo={repoData} /> : null}
-            <div  className="flex flex-col justify-center items-center pb-44">
+            <div  className="flex flex-col justify-center items-center">
                 <h1 className="w-4/5 h-px bg-white mb-4"></h1>
                 <div>
-                    <div className='overflow-auto height flex flex-wrap justify-center'>
+                    <div className='overflow-auto height flex flex-wrap justify-center pb-44'>
                         {
-                            repos ? repos.map((repo, index) => {
+                            repos && repos?.length > 0 ? repos.map((repo, index) => {
                                 const imageUrl = repo.topics[0] + '.png'
                                 return(
-                                    <div key={index} className="m-4 inline-block max-w-64 p-4 rounded-2xl flex flex-col gap-2 hover:shadow hover:shadow-yellow-400 shadow-sm shadow-yellow-400">
+                                    <div key={index} className="m-4 inline-block max-w-64 p-4 rounded-2xl flex flex-col gap-2 hover:shadow-md hover:shadow-yellow-600 shadow-sm shadow-yellow-400">
                                         <div className='flex flex-row justify-between items-center gap-2 border-b border-black'>
                                             <div className='flex flex-row items-center gap-2'>
                                                 {
                                                     props.userEvents ?
-                                                    <ProfilPicture user={props.user} userEvents={props.userEvents} width={'w-8'} height={'w-8'} />
+                                                    <ProfilPicture user={props.user} userEvents={props.userEvents} width={'w-8'} height={'h-8'} />
                                                     :
                                                     <ProfilPicture user={repo.owner} userEvents={props.userEvents} width={'w-8'} height={'h-8'} />
                                                 }

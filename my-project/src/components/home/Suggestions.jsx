@@ -13,11 +13,12 @@ function Suggestions(props) {
         setModalSate(!modalState)
     }
 //<img src={user.avatar_url} alt={user.avatar_url} className='rounded-full w-16 h-16'/>
+//                                    <img src={following.avatar_url} alt={following.avatar_url} className='rounded-full w-12 h-12'/>
     return(
         <>
             {modalState ? <ContactModal setAction={setModalSate} action={modalState} /> : null}
-           <div className='pt-8 flex flex-col gap-4 pl-4 pr-4 pb-3 md:pb-32'>
-            <div className='flex flex-row items-center justify-between gap-4'> 
+           <div className='pt-8 flex flex-col gap-4 pl-4 pr-4 pb-3'>
+            <div className='flex flex-row items-center justify-between gap-16'> 
                 <div to="/profil" className='flex flex-row items-center gap-4'>
                     <ProfilPicture user={user} userEvents={props.userEvents} width={'w-12'} height={'h-12'} />
                     <Link to="/profil">
@@ -25,16 +26,16 @@ function Suggestions(props) {
                         <h3 className='text-white text-xs'>{user.name}</h3>
                     </Link>
                 </div>
-                <h3 className='text-yellow-700 font-bold text-xs cursor-pointer hover:text-yellow-500' onClick={() => onpenModal()}>Contact me</h3>
+                <h3 className='text-yellow-700 font-bold text-xs cursor-pointer hover:text-yellow-500 whitespace-nowrap' onClick={() => onpenModal()}>Contact me</h3>
             </div>
             <h3 className='text-white opacity-70 text-sm font-bold'>Suggested for you</h3>
-            <div className='flex flex-row md:flex-col gap-4 overflow-auto'>
+            <div className='flex flex-row md:flex-col gap-4 overflow-auto pb-16 md:pb-32'>
                 {
                     followings ? followings.map((following, index) => {
                         return(
-                            <div key={index} className='flex flex-row items-center justify-between max-w-64 gap-2 md:gap-4'> 
-                                <Link to={`/user/${following.login}`} className='flex flex-col items-center gap-4 md:flex-row'>
-                                    <img src={following.avatar_url} alt={following.avatar_url} className='rounded-full w-12 h-12'/>
+                            <div key={index} className='flex flex-row items-center justify-between gap-2 md:gap-16'> 
+                                <Link to={`/profil/${following.login}`} className='flex flex-col items-center gap-4 md:flex-row'>
+                                    <ProfilPicture user={following} userEvents={null} width={'w-12'} height={'h-12'} />
                                     <div>
                                         <h3 className='text-white text-sm font-bold uppercase'>{following.login.substring(0,10)}</h3>
                                     </div>

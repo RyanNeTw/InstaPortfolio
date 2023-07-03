@@ -1,4 +1,4 @@
-import { ConnexionType, Follower, Following, Organisation, ReposType, UserEvents } from "../types/gitHubTypes"
+import { ConnexionType, emojiType, Follower, Following, Organisation, ReposType, UserEvents } from "../types/gitHubTypes"
 
 type error = {
     status: boolean,
@@ -56,6 +56,12 @@ export const  GetUserReceivedEvents = async (search = owner): Promise<{status: b
     const res = await fetch(`https://api.github.com/users/${search}/received_events`);
     const events = await res.json();
     return {status: res.ok ,data: events};
+}
+
+export const  GetEmoji = async (search: string): Promise<emojiType[]> => {
+    const res = await fetch(`https://emoji-api.com/emojis?search=${search}&access_key=2ccad462fb1e8e174cf78555dad536cf8490466c`);
+    const emoji = await res.json();
+    return emoji;
 }
 
 export default GetInfoAccount

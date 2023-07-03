@@ -243,3 +243,12 @@ export type Owner = {
     type:                string;
     site_admin:          boolean;
 }
+
+export type emojiType = {
+    character : string;
+    codePoint: string;
+    group: string;
+    slug: string;
+    subGroup: string;
+    unicodeName: string;
+}

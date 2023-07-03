@@ -7,10 +7,10 @@ import OrganisationList from './OrganisationList'
 import Repos from './Repos'
 import { Link } from 'react-router-dom'
 import ProfilPicture from '../elements/profilPicture'
-import { GetInfoRepos, GetInfoFollowers, GetInfoOrga, GetInfoFollowings, GetInfoReposLiked , GetUserEvents, GetUserReceivedEvents} from '../../api/GetAccountInfo'
+import { GetInfoRepos, GetInfoFollowers, GetInfoOrga, GetInfoFollowings, GetInfoReposLiked , GetUserEvents, GetUserReceivedEvents, GetEmoji} from '../../api/GetAccountInfo'
 import GetInfoAccount from '../../api/GetAccountInfo'
-import Loader from '../Loader';
 import TwitterSvg from '../../assets/Twitter'
+import ArrowSvg from '../../assets/arrow';
 
 function ProfilPage(props) {
     const [followersModal, setFollwersModal] = useState(false)
@@ -27,9 +27,12 @@ function ProfilPage(props) {
     const [reposLikedSearch, setReposLikedSearch] = useState([])
     const [userEventsSearch, setUserEventsSearch] = useState([])
     const [userReceivedEventsSearch, setUserReceidedEventsSearch] = useState([])
+    const [emoji, setEmoji] = useState('')
 
     useEffect(()=>{
+        GetEmoji(user.location).then((data) => setEmoji(data))
         if (!isLoaded && searchUrl) {
+            console.log("tett", searchUrl)
             GetInfoAccount(searchUrl).then((data) => setUserSearch(data));
             GetInfoFollowers(searchUrl).then((data) => setFollowersSearch(data));
             GetInfoRepos(searchUrl).then((data) => setReposSearch(data));
@@ -38,9 +41,10 @@ function ProfilPage(props) {
             GetInfoReposLiked(searchUrl).then((data) => setReposLikedSearch(data))
             GetUserEvents(searchUrl).then((data) => setUserEventsSearch(data))
             GetUserReceivedEvents(searchUrl).then((data) => setUserReceidedEventsSearch(data))
+            GetEmoji(userSearch?.location).then((data) => setEmoji(data))
             setIsLoaded(true)
         }
-      }, [isLoaded])
+      }, [searchUrl])
 
     const reposLiked = userSearch ? reposLikedSearch : props.reposLiked
     const user = userSearch ? userSearch.data : props.user.data
@@ -49,18 +53,7 @@ function ProfilPage(props) {
     const userEvents = userSearch ? userEventsSearch.data : props.userEvents.data
     const organization = userSearch ? organisationSearch : props.organisation
     const userReceivedEvents = userSearch ? userReceivedEventsSearch : props.userReceivedEvents
-    const repos = userSearch ? reposSearch : props.repos
-      
-    if(!isLoaded && searchUrl != undefined) {
-        return(
-            <>
-                <Loader />
-                <Header userReceivedEvents={userReceivedEvents}/>
-            </>
-        )
-    }
-
-
+    const repos = userSearch != undefined ? reposSearch : props.repos
 
     function getFollowers(state) {
         setFollwersModal(!state)
@@ -100,15 +93,15 @@ function ProfilPage(props) {
         <div className='flex flex-col h-screen overflow-auto'>
             {followersModal ? <FollowersModal  followers={followers} setAction={setFollwersModal} action={followersModal} text="Followers"/> : null}
             {followingsModal ? <FollowersModal  followers={followings} setAction={setFollwingsModal} action={followingsModal} text="Followings"/> : null}
-            <div  className="flex flex-col gap-2 md:items-center">
-                <div className='flex flex-row justify-center gap-4 md:gap-24 items-center p-4'>
+            <div  className="flex flex-col gap-2 md:items-center w-full">
+                <div className='flex flex-row justify-between md:justify-center gap-4 md:gap-24 items-center p-4 min-w-1/2'>
                     <div className='flex flex-col gap-2 items-center'>
-                        <div className='flex flex-row items-end'>
+                        <div className='relative'>
                             <ProfilPicture user={user ? user : user.data} userEvents={userEvents ? userEvents : null } width={'w-36'} height={'h-36'} />
                             {
                                 user?.twitter_username 
                                 ? (
-                                    <a href={`https://twitter.com/+${user?.twitter_username}`} target="_blank" rel="noopener noreferrer">
+                                    <a href={`https://twitter.com/+${user?.twitter_username}`} target="_blank" rel="noopener noreferrer" className='absolute bottom-0 right-0 rounded-full bg-zinc-900 border border-yellow-400 p-2 hover:opacity-90'>
                                         <TwitterSvg />
                                     </a>
                                 ) : null
@@ -116,28 +109,55 @@ function ProfilPage(props) {
                         </div>
                         {user.hireable ? (<Link to="/cv" className='animate-pulse block md:hidden pl-4 pr-4 border border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black transition-all rounded'>Hire me</Link>) : null }
                     </div>
-                    <div className='flex flex-col gap-4 items-start'>
-                        <div className='flex flex-row gap-8'>
+                    <div className='flex flex-col gap-2 md:gap-4 items-start'>
+                        <div className='flex flex-col md:flex-row gap-2 md:gap-8'>
                             <a className='text-white font-bold uppercase hover:animate-pulse' href={user.html_url} target="_blank" rel="noopener noreferrer">{user.login ? user.login : searchUrl}</a>
                             <div className='flex flex-row items-center gap-2'>
                                 {user.location ? <LocationSvg /> : null}
                                 <h2 className='text-white'>{user.location ? user.location : null}</h2>
+                                {emoji?.length > 0 && emoji[0]?.character ? emoji[0]?.character : null}
                             </div>
                             {user.hireable ? (<Link to="/cv" className='animate-pulse hidden md:block pl-4 pr-4 border border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black transition-all rounded'>Hire me</Link>) : null }
                         </div>
-                        <div className='flex flex-wrap gap-4'>
+                        <div className='flex flex-wrap gap-2 md:gap-4'>
                             <h3 className='text-white'><span className='font-bold'>{user.public_repos ? user.public_repos : user.data?.public_repos}</span> posts</h3>
                             <h3 className='text-white cursor-pointer hover:opacity-80' onClick={() => getFollowers(followersModal)}><span className='font-bold'>{ user.followers ? user.followers  : 0}</span> followers</h3>
                             <h3 className='text-white cursor-pointer hover:opacity-80' onClick={() => getFollowings(followersModal)}><span className='font-bold'>{user.following  ? user.following : 0}</span> following</h3>
                         </div>
                         <div className='border-dashed border rounded pl-4 pr-4 pt-2 pb-2 flex flex-col gap-4 hidden md:block'>
                             <p className='text-white'>{ user.bio ? user?.bio : "This person has no bio"}</p>
+                            {
+                                user.blog ? (
+                                    <div className='flex flex-row gap-2'>
+                                        <h4 className='text-white'>Blog :</h4>
+                                        <a target="_blank" rel="noopener noreferrer" href={user.blog} className='group relative flex flex-row items-center'> 
+                                            <h4 className='text-white hover:underline hover:text-yellow-400 transition'>{user.blog.split('/')[2]}</h4>
+                                            <span className="cursor-help absolute top-0 -right-8 scale-0 p-2 text-xs text-white group-hover:scale-100">
+                                                <ArrowSvg color={"fill-yellow-400"} />
+                                            </span>
+                                        </a>
+                                    </div>
+                                ) : null
+                            }
                             <h5 className='text-white text-xs self-end'>- { user.name ? user.name : searchUrl }</h5>
                         </div>
                     </div>
                 </div>
                 <div className='border-dashed border rounded pl-4 pr-4 pt-2 pb-2 flex flex-col gap-4 block md:hidden ml-4 mr-4'>
                             <p className='text-white'>{ user.bio ? user?.bio : "This person has no bio"}</p>
+                            {
+                                user.blog ? (
+                                    <div className='flex flex-row gap-2'>
+                                        <h4 className='text-white'>Blog :</h4>
+                                        <a target="_blank" rel="noopener noreferrer" href={user.blog} className='group relative flex flex-row items-center'> 
+                                            <h4 className='text-white hover:underline hover:text-yellow-400 transition'>{user.blog.split('/')[2]}</h4>
+                                            <span className="cursor-help absolute top-0 left-36 scale-0 p-2 text-xs text-white group-hover:scale-100">
+                                                <ArrowSvg color={"fill-yellow-400"} />
+                                            </span>
+                                        </a>
+                                    </div>
+                                ) : null
+                            }
                             <h5 className='text-white text-xs self-end'>- { user.name ? user.name : searchUrl }</h5>
                 </div>
                 {organization.status ? (<OrganisationList organisation={organization.data} />) : null}

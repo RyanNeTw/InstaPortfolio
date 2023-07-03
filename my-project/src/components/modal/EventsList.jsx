@@ -29,8 +29,20 @@ function EventsList(props) {
 
     return(
         <>
-            <div className='w-screen h-screen bg-black absolute z-1 opacity-80 top-0 left-0' onClick={() => {closeModalEventsList()}} ></div>
-            <div className='absolute z-30 w-3/4 h-3/4 md:w-1/2 md:h-1/2 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border bg-zinc-800 rounded-lg overflow-auto'>
+            <div className='w-screen h-screen bg-black fixed z-1 opacity-80 top-0 left-0' onClick={() => {closeModalEventsList()}} ></div>
+            <div className='fixed z-30 w-3/4 h-3/4 md:w-1/2 md:h-1/2 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border bg-zinc-800 rounded-lg overflow-auto'>
+                <div className='absolute top-2 left-2 flex flex-row gap-2 items-center'>
+                {
+                    props.user ?
+                    <img src={props.user.avatar_url} alt={props.user.avatar_url} className={`rounded-full border-2 border-yellow-400 cursor-pointer w-8 h-8 `}/> 
+                    :
+                    null
+                }
+                <div>
+                    <h3 className='text-white font-bold'>{props.user.login} </h3>
+                    <h5 className='text-white text-sm'>{props.events.created_at} </h5>
+                </div>
+                </div>
                 <div className='z-50 flex flex-row gap-2 absolute bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pb-4'>
                     {
                         events.map((event, index) => {

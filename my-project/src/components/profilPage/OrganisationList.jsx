@@ -5,7 +5,7 @@ const organisations = props.organisation
 
     return(
         <>
-            <div className='flex flex-row gap-2 items-center overflow-auto'>
+            <div className='flex flex-row gap-2 items-center overflow-auto pl-2 pr-2'>
             { organisations ? 
                     organisations.map((organisation, index) => {
                         return(

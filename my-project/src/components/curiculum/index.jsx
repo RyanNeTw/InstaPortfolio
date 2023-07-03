@@ -16,7 +16,7 @@ function Curiculum(props) {
     return(
         <>
             <div className="flex justify-center flex-col gap-8 max-h-screen pl-12  pr-12 md:pl-64 md:pr-64 items-center">
-                <button className='hover:opacity-70 bg-yellow-600 font-bold pl-12 pr-12 pt-2 mt-4 pb-2 rounded' onClick={handleDownload}>
+                <button className='hover:bg-yellow-400 hover:text-black hover:shadow-md hover:shadow-yellow-600 border border-yellow-400 text-yellow-400 font-bold pl-12 pr-12 pt-2 mt-4 pb-2 rounded' onClick={handleDownload}>
                     Download CV
                 </button>
                 <CuriculumViewer />
