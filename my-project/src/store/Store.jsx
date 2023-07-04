@@ -12,7 +12,7 @@ export function StoreProvider(props){
     useEffect(()=>{
       setTimeout(() => {
         GetRateLimit().then((data) => setRate(data))
-        setHireMe(true)
+        rate == false ? setHireMe(true) : setHireMe(false)
     }, 50000)
     },[])
 
