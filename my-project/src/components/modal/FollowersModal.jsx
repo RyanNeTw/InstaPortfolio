@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom'
 
 function FollowersModal(props) {
     const followers = props.followers.data
@@ -21,10 +22,10 @@ function FollowersModal(props) {
                     followers.map((follower, index) => {
                         return(
                                 <div key={index} className="flex flex-row justify-between items-center gap-24">
-                                    <div className='flex flex-row items-center gap-4'>
+                                    <Link to={`/profil/${follower.login}`}  className='flex flex-row items-center gap-4'>
                                         <img src={follower.avatar_url} alt={follower.avatar_url} className="border rounded-full w-12" />
                                         <h3 className='text-white'>{follower.login }</h3>
-                                    </div>
+                                    </Link>
                                     <a href={'https://github.com/' + follower.login}  className="group relative pl-4 pr-4 rounded border border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black hover:shadow hover:shadow-yellow-400 cursor-pointer" target="_blank" rel="noopener noreferrer">
                                         Visit
                                     </a>

@@ -252,3 +252,23 @@ export type emojiType = {
     subGroup: string;
     unicodeName: string;
 }
+
+export interface RateLimit {
+    resources: Resources;
+    rate:      Rate;
+}
+
+export interface Rate {
+    limit:     number;
+    remaining: number;
+    reset:     number;
+    used:      number;
+    resource:  string;
+}
+
+export interface Resources {
+    core:                Rate;
+    graphql:             Rate;
+    integrationManifest: Rate;
+    search:              Rate;
+}

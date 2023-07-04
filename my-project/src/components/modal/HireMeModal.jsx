@@ -4,19 +4,21 @@ import { Link } from 'react-router-dom';
 import LinkedInSvg from '../../assets/LinkedIn';
 import GitHubSvg from '../../assets/GitHub';
 import AccountSvg from '../../assets/account';
+import { useContext } from 'react';
+import { StoreContext } from '../../store/Store';
 
 function HireMeModal(props) {
-    const [closeHireMeModal, setCloseHireMeModal] = useState(true)
     const [openSocials, setOpenSocials] = useState(false)
+    const {setHireMe, hireMe} = useContext(StoreContext)
 
     function closeHireMeFunction(){
-        setCloseHireMeModal(!closeHireMeModal)
+        setHireMe(!hireMe)
     }
 
     function socialsFunction(){
         setOpenSocials(!openSocials)
     }
-    if (closeHireMeModal && props) {
+    if (hireMe && props) {
         return(
             <>
                 <div className='bg-zinc-800 rounded-lg flex flex-col absolute z-60 top-1/2 left-1/2 p-4 max-w-5xl items-center gap-4 transform -translate-x-1/2 -translate-y-1/2'>

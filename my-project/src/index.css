@@ -43,3 +43,51 @@ body {
         transform: rotate(0deg);
       }
   }
+
+  @keyframes heartBeat {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.3);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  .like-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .like-icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url('path/to/like-icon.png');
+    background-size: cover;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .like-button:hover .like-icon {
+    transform: scale(1.3);
+  }
+  
+  .like-button:active .like-icon {
+    animation: heartBeat 0.5s;
+  }
+  
+  .triangleCode{
+    display : inline-block;
+    height : 0;
+    width : 0;
+    border-right : 0.5rem solid transparent;
+    border-bottom : 1rem solid #facc15;
+    border-left : 0.5rem solid transparent;
+   }
+
+   .alerteSvg:hover + .alert {
+    display: block;
+   }

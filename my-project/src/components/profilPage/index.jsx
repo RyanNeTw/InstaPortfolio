@@ -29,10 +29,23 @@ function ProfilPage(props) {
     const [userReceivedEventsSearch, setUserReceidedEventsSearch] = useState([])
     const [emoji, setEmoji] = useState('')
 
+    const reposLiked = userSearch != undefined && isLoaded? reposLikedSearch : props.reposLiked
+    const user = userSearch != undefined && isLoaded ? userSearch.data : props.user.data
+    const followers = userSearch != undefined && isLoaded ? followersSearch : props.followers
+    const followings = userSearch != undefined && isLoaded ? followingsSearch : props.followings
+    const userEvents = userSearch != undefined && isLoaded ? userEventsSearch.data : props.userEvents.data
+    const organization = userSearch != undefined && isLoaded ? organisationSearch : props.organisation
+    const userReceivedEvents = userSearch != undefined && isLoaded ? userReceivedEventsSearch : props.userReceivedEvents
+    const repos = userSearch != undefined && isLoaded ? reposSearch : props.repos
+
     useEffect(()=>{
         GetEmoji(user.location).then((data) => setEmoji(data))
-        if (!isLoaded && searchUrl) {
-            console.log("tett", searchUrl)
+
+        if (searchUrl != user.login) {
+            setIsLoaded(false)
+        }
+
+        if (searchUrl) {
             GetInfoAccount(searchUrl).then((data) => setUserSearch(data));
             GetInfoFollowers(searchUrl).then((data) => setFollowersSearch(data));
             GetInfoRepos(searchUrl).then((data) => setReposSearch(data));
@@ -44,16 +57,9 @@ function ProfilPage(props) {
             GetEmoji(userSearch?.location).then((data) => setEmoji(data))
             setIsLoaded(true)
         }
-      }, [searchUrl])
+      }, [searchUrl, isLoaded])
 
-    const reposLiked = userSearch ? reposLikedSearch : props.reposLiked
-    const user = userSearch ? userSearch.data : props.user.data
-    const followers = userSearch ? followersSearch : props.followers
-    const followings = userSearch ? followingsSearch : props.followings
-    const userEvents = userSearch ? userEventsSearch.data : props.userEvents.data
-    const organization = userSearch ? organisationSearch : props.organisation
-    const userReceivedEvents = userSearch ? userReceivedEventsSearch : props.userReceivedEvents
-    const repos = userSearch != undefined ? reposSearch : props.repos
+      
 
     function getFollowers(state) {
         setFollwersModal(!state)

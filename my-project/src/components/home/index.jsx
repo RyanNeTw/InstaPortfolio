@@ -25,6 +25,7 @@ function Home(props) {
         setCloseImageModal(!closeImageModal)
     }
 
+
     // <img src={CvRyanEzZerqti2023Image} alt="Cv Ryan Ez Zerqti" className='cursor-pointer overflow-auto h-72 md:h-96 self-center' onClick={() => closeImageModalFunction(cvRepo)}/>
     //<img src={repo.owner.avatar_url} alt={repo.owner.avatar_url} className='rounded-full w-6 h-6'/>
     return(
@@ -105,8 +106,12 @@ function Home(props) {
                                 <div>
                                     <div>
                                         <div className='flex flex-row gap-2 items-center'>
-                                            <HeartSvg color={ repo.stargazers_count >= 1 ? "fill-yellow-500" : "fill-white" } />
-                                            <h3 className='text-white'>{ repo.stargazers_count}</h3>
+                                            <div className='like-button'>
+                                                <div className='like-icon'>
+                                                    <HeartSvg color={ repo.stargazers_count  >= 1 ? "fill-yellow-500" : "fill-white" } />
+                                                </div>
+                                            </div>
+                                            <h3 className='text-white'>{ repo.stargazers_count  }</h3>
                                         </div>
                                     </div>
                                     <div className='flex flex-row gap-2 items-center pb-2'>
