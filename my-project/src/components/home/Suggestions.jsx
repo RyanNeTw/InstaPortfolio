@@ -29,7 +29,7 @@ function Suggestions(props) {
                 <h3 className='text-yellow-700 font-bold text-xs cursor-pointer hover:text-yellow-500 whitespace-nowrap' onClick={() => onpenModal()}>Contact me</h3>
             </div>
             <h3 className='text-white opacity-70 text-sm font-bold'>Suggested for you</h3>
-            <div className='flex flex-row md:flex-col gap-4 overflow-auto pb-0 md:pb-32'>
+            <div className='flex flex-row md:flex-col gap-4 overflow-auto pb-2 md:pb-32'>
                 {
                     followings ? followings.map((following, index) => {
                         return(

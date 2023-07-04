@@ -100,8 +100,8 @@ function ProfilPage(props) {
             {followersModal ? <FollowersModal  followers={followers} setAction={setFollwersModal} action={followersModal} text="Followers"/> : null}
             {followingsModal ? <FollowersModal  followers={followings} setAction={setFollwingsModal} action={followingsModal} text="Followings"/> : null}
             <div  className="flex flex-col gap-2 md:items-center w-full">
-                <div className='flex flex-row justify-between md:justify-center gap-4 md:gap-24 items-center p-4 min-w-1/2'>
-                    <div className='flex flex-col gap-2 items-center'>
+                <div className='flex flex-row justify-between md:justify-center gap-4 md:gap-24 items-center p-4 min-w-full md:min-w-1/2'>
+                    <div className='flex flex-col gap-2 items-center min-w-1/2'>
                         <div className='relative'>
                             <ProfilPicture user={user ? user : user.data} userEvents={userEvents ? userEvents : null } width={'w-36'} height={'h-36'} />
                             {
@@ -115,7 +115,7 @@ function ProfilPage(props) {
                         </div>
                         {user.hireable ? (<Link to="/cv" className='animate-pulse block md:hidden pl-4 pr-4 border border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black transition-all rounded'>Hire me</Link>) : null }
                     </div>
-                    <div className='flex flex-col gap-2 md:gap-4 items-start'>
+                    <div className='flex flex-col gap-2 md:gap-4 items-start max-w-1/2'>
                         <div className='flex flex-col md:flex-row gap-2 md:gap-8'>
                             <a className='text-white font-bold uppercase hover:animate-pulse' href={user.html_url} target="_blank" rel="noopener noreferrer">{user.login ? user.login : searchUrl}</a>
                             <div className='flex flex-row items-center gap-2'>
