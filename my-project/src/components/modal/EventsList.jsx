@@ -44,7 +44,7 @@ function EventsList(props) {
                 </div>
                 </div>
                 <div className='z-50 flex flex-row gap-2 absolute bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pb-4'>
-                    {
+                    { events && events.length > 0 ?
                         events.map((event, index) => {
                             return(
                                 <div 
@@ -53,7 +53,7 @@ function EventsList(props) {
                                     onClick={() => changeNumber(index)}
                                 ></div>
                             )
-                        })
+                        }) : null
                     }
                </div>
                <div className='z-45 flex flex-row justify-between gap-2 absolute pb-4 h-full w-full'>
@@ -61,7 +61,7 @@ function EventsList(props) {
                     <div className='w-1/4 h-full cursor-pointer' onClick={() => addOneToNumber()}></div>
                </div>
                 <div className='w-full h-full overflow-hidden'>
-                    {
+                    {events && events.length > 0 ?
                         events.map((event, index) => {
                             const url = event.repo.url.split('/')[5] + '.png'
                             const urlRepo = "https://github.com/" + event.repo.name
@@ -80,7 +80,7 @@ function EventsList(props) {
                                     </div>
                                 </div>
                             )
-                        })
+                        }) : null
                     }
                 </div>
             </div>

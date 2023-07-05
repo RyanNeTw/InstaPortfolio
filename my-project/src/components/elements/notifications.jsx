@@ -9,7 +9,7 @@ function Notifications(props) {
     function openModal() {
         setModalState(!modalState)
     }
-
+    
     return(
         <>
             <button onClick={() => openModal()} data-dropdown-toggle="dropdownNotification" className="inline-flex items-center text-sm font-medium text-center text-gray-500 hover:text-gray-900 focus:outline-none dark:hover:text-gray-400 dark:text-white" type="button"> 
@@ -28,7 +28,7 @@ function Notifications(props) {
                             <h2 className="text-white font-bold flex justify-center">Notifications</h2>
                         </div>
                         {
-                            notifs ? notifs.data.slice(0, 6).map((notif, index) => {
+                            notifs && notifs?.data?.length > 0 ? notifs.data.slice(0, 6).map((notif, index) => {
                                 return(
                                     <div key={index} className={`flex flex-row gap-4 p-4 items-center ${index != 0 ?"border-t border-zinc-600" : null}`}>
                                         <a href={"https://github.com/" + notif.actor.login} target="_blank" rel="noopener noreferrer">

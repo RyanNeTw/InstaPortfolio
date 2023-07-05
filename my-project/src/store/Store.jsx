@@ -10,10 +10,11 @@ export function StoreProvider(props){
   const [hireMe, setHireMe] = useState(true)
 
     useEffect(()=>{
+      GetRateLimit().then((data) => setRate(data))
       setTimeout(() => {
         GetRateLimit().then((data) => setRate(data))
         setHireMe(true)
-    }, 50000)
+    }, 100000)
     },[])
 
     return(

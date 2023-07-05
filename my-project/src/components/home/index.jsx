@@ -8,6 +8,7 @@ import Suggestions from './Suggestions'
 import PostModal from '../modal/PostModal'
 import CvRyanEzZerqti2023Image from '../../assets/CvRyanEzZerqti2023Image.png'
 import ProfilPicture from '../elements/profilPicture';
+import Form from '../elements/form';
 
 function Home(props) {
     const repos = props.repos.data
@@ -34,7 +35,7 @@ function Home(props) {
             { closeImageModal ? <PostModal setAction={setCloseImageModal} action={closeImageModal} repo={repoData} /> : null}
             <div className="flex justify-between flex-col-reverse gap-4 md:gap-4 md:flex-row max-h-screen w-screen md:pl-[10%] md:pr-[10%] ">
                 <div className='flex flex-wrap justify-center items-center gap-8 overflow-scroll pb-44 md:pb-52 pt-12'>
-                { repos ?
+                { repos && repos?.length > 0 ?
                     repos.map((repo, index) => {
                         const pdf = {
                             html_url: "CvRyanEzZerqti2023Image.png"
@@ -123,6 +124,7 @@ function Home(props) {
                         )
                     }) : null
                 }
+                <Form />
                 </div>
                 <Suggestions user={props.user.data} followings={props.followings.data} userEvents={props.userEvents.data} />
             </div>

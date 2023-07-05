@@ -6,7 +6,7 @@ function RateLimitAlert() {
 
     const {rate} = useContext(StoreContext)
 
-    if (rate?.rate?.remaining >= rate?.rate?.limit/10) {
+    if (rate?.data?.rate?.remaining <= rate?.data?.rate?.limit/100) {
         return (
             <>
                 <div className="absolute top-5 left-5 flex flex-row gap-2 items-center">

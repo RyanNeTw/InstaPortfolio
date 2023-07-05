@@ -54,12 +54,10 @@ function ProfilPage(props) {
             GetInfoReposLiked(searchUrl).then((data) => setReposLikedSearch(data))
             GetUserEvents(searchUrl).then((data) => setUserEventsSearch(data))
             GetUserReceivedEvents(searchUrl).then((data) => setUserReceidedEventsSearch(data))
-            GetEmoji(userSearch?.location).then((data) => setEmoji(data))
+            GetEmoji(user?.location).then((data) => setEmoji(data))
             setIsLoaded(true)
         }
       }, [searchUrl, isLoaded])
-
-      
 
     function getFollowers(state) {
         setFollwersModal(!state)
@@ -72,8 +70,7 @@ function ProfilPage(props) {
     function ReposType(status) {
         setRepoType(status)
     }
-
-
+     
     if (user.message == "Not Found") {
         return (
             <>
@@ -117,7 +114,7 @@ function ProfilPage(props) {
                     </div>
                     <div className='flex flex-col gap-2 md:gap-4 items-start max-w-1/2'>
                         <div className='flex flex-col md:flex-row gap-2 md:gap-8'>
-                            <a className='text-white font-bold uppercase hover:animate-pulse' href={user.html_url} target="_blank" rel="noopener noreferrer">{user.login ? user.login : searchUrl}</a>
+                            <a className='text-white font-bold uppercase hover:animate-pulse hover:text-yellow-400 transition' href={user.html_url} target="_blank" rel="noopener noreferrer">{user.login ? user.login : searchUrl}</a>
                             <div className='flex flex-row items-center gap-2'>
                                 {user.location ? <LocationSvg /> : null}
                                 <h2 className='text-white'>{user.location ? user.location : null}</h2>
@@ -127,8 +124,8 @@ function ProfilPage(props) {
                         </div>
                         <div className='flex flex-wrap gap-2 md:gap-4'>
                             <h3 className='text-white'><span className='font-bold'>{user.public_repos ? user.public_repos : user.data?.public_repos}</span> posts</h3>
-                            <h3 className='text-white cursor-pointer hover:opacity-80' onClick={() => getFollowers(followersModal)}><span className='font-bold'>{ user.followers ? user.followers  : 0}</span> followers</h3>
-                            <h3 className='text-white cursor-pointer hover:opacity-80' onClick={() => getFollowings(followersModal)}><span className='font-bold'>{user.following  ? user.following : 0}</span> following</h3>
+                            <h3 className='text-white cursor-pointer hover:opacity-80 hover:text-yellow-400 transition' onClick={() => getFollowers(followersModal)}><span className='font-bold'>{ user.followers ? user.followers  : 0}</span> followers</h3>
+                            <h3 className='text-white cursor-pointer hover:opacity-80 hover:text-yellow-400 transition' onClick={() => getFollowings(followersModal)}><span className='font-bold'>{user.following  ? user.following : 0}</span> following</h3>
                         </div>
                         <div className='border-dashed border rounded pl-4 pr-4 pt-2 pb-2 flex flex-col gap-4 hidden md:block'>
                             <p className='text-white'>{ user.bio ? user?.bio : "This person has no bio"}</p>
@@ -145,6 +142,7 @@ function ProfilPage(props) {
                                     </div>
                                 ) : null
                             }
+                             <h5 className='text-white'>{ user.email ? "Mail : " + user.email : null }</h5>
                             <h5 className='text-white text-xs self-end'>- { user.name ? user.name : searchUrl }</h5>
                         </div>
                     </div>

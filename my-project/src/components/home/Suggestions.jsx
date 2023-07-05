@@ -31,7 +31,7 @@ function Suggestions(props) {
             <h3 className='text-white opacity-70 text-sm font-bold'>Suggested for you</h3>
             <div className='flex flex-row md:flex-col gap-4 overflow-auto pb-2 md:pb-32'>
                 {
-                    followings ? followings.map((following, index) => {
+                    followings && followings?.length > 0 ? followings.map((following, index) => {
                         return(
                             <div key={index} className='flex flex-row items-center justify-between gap-2 md:gap-16'> 
                                 <Link to={`/profil/${following.login}`} className='flex flex-col items-center gap-4 md:flex-row'>

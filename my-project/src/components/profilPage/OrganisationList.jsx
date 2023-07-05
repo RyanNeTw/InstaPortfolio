@@ -6,7 +6,7 @@ const organisations = props.organisation
     return(
         <>
             <div className='flex flex-row gap-2 items-center overflow-auto pl-2 pr-2'>
-            { organisations ? 
+            { organisations && organisations?.length > 0? 
                     organisations.map((organisation, index) => {
                         return(
                             <div key={index} className='hover:bg-zinc-600 rounded border border-zinc-600 text-ellipsis'>
