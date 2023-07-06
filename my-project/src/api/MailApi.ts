@@ -1,6 +1,6 @@
 
 
-const url = `http://api.ryantw.net/api/`
+const url = `https://api.ryantw.net/`
 
 type Mail = {
     myMail: string;
@@ -10,7 +10,7 @@ type Mail = {
   };
 
 async function SendMail (body: Mail): Promise<number> {
-    const res = await fetch(url + 'mail/send', {
+    const res = await fetch(url + 'sendMail', {
         method: 'POST',
         mode: "cors",
         headers: {

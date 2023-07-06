@@ -1,5 +1,4 @@
 import { ConnexionType, emojiType, Follower, Following, Organisation, RateLimit, ReposType, UserEvents } from "../types/gitHubTypes"
-import axios from 'axios'
 
 type error = {
     status: boolean,
@@ -10,7 +9,7 @@ type error = {
 }
 
 const owner = 'RyanNeTw'
-const url = `http://api.ryantw.net/api/`
+const url = `https://api.ryantw.net/api/`
 
 const header = {
     "Access-Control-Allow-Origin": "http://api.ryantw.net",
