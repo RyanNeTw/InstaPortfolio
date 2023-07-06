@@ -12,6 +12,7 @@ type Mail = {
 async function SendMail (body: Mail): Promise<number> {
     const res = await fetch(url + 'mail/send', {
         method: 'POST',
+        mode: "cors",
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
