@@ -16,7 +16,7 @@ import MailSvg from "../assets/Mail";
 
 function Header(props) {
 
-  const {hireMe, rate} = useContext(StoreContext)
+  const {hireMe} = useContext(StoreContext)
 
   function openEmailClient() {
     const recipientEmail = 'ezzerqtiryan@gmail.com';

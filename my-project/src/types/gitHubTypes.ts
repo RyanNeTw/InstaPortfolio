@@ -272,3 +272,13 @@ export interface Resources {
     integrationManifest: Rate;
     search:              Rate;
 }
+
+export type SocialsList = {
+    status: number;
+    social: Socials[] 
+}
+
+type Socials = {
+    provider: string;
+    url: string
+}

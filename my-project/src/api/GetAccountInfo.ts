@@ -1,4 +1,4 @@
-import { ConnexionType, emojiType, Follower, Following, Organisation, RateLimit, ReposType, UserEvents } from "../types/gitHubTypes"
+import { ConnexionType, Follower, Following, Organisation, RateLimit, ReposType, SocialsList, UserEvents } from "../types/gitHubTypes"
 
 type error = {
     status: boolean,
@@ -9,7 +9,7 @@ type error = {
 }
 
 const owner = 'RyanNeTw'
-const url = `https://api.ryantw.net/api/`
+const url = `http://api.ryantw.net/api/user/`
 
 const header = {
     "Access-Control-Allow-Origin": "http://api.ryantw.net",
@@ -70,11 +70,10 @@ export const  GetRateLimit = async (search = owner): Promise<RateLimit> => {
     return rateLimit;
 }
 
-
-export const  GetEmoji = async (search: string): Promise<emojiType[]> => {
-    const res = await fetch(url + `emoji/${search}`, {headers: header,  mode: "cors"});
-    const emoji = await res.json();
-    return emoji.data;
+export const  GetSocials = async (search = owner): Promise<SocialsList> => {
+    const res = await fetch(url + `${search}/socials`, {headers: header,  mode: "cors"});
+    const rateLimit = await res.json();
+    return rateLimit;
 }
 
 export default GetInfoAccount

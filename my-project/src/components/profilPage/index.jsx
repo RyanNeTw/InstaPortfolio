@@ -7,10 +7,12 @@ import OrganisationList from './OrganisationList'
 import Repos from './Repos'
 import { Link } from 'react-router-dom'
 import ProfilPicture from '../elements/profilPicture'
-import { GetInfoRepos, GetInfoFollowers, GetInfoOrga, GetInfoFollowings, GetInfoReposLiked , GetUserEvents, GetUserReceivedEvents, GetEmoji} from '../../api/GetAccountInfo'
+import { GetInfoRepos, GetInfoFollowers, GetInfoOrga, GetInfoFollowings, GetInfoReposLiked , GetUserEvents, GetUserReceivedEvents} from '../../api/GetAccountInfo'
+import { GetEmoji} from '../../api/MailApi'
 import GetInfoAccount from '../../api/GetAccountInfo'
 import TwitterSvg from '../../assets/Twitter'
 import ArrowSvg from '../../assets/arrow';
+import SocialsList from '../elements/socials'
 
 function ProfilPage(props) {
     const [followersModal, setFollwersModal] = useState(false)
@@ -37,6 +39,8 @@ function ProfilPage(props) {
     const organization = userSearch != undefined && isLoaded ? organisationSearch : props.organisation
     const userReceivedEvents = userSearch != undefined && isLoaded ? userReceivedEventsSearch : props.userReceivedEvents
     const repos = userSearch != undefined && isLoaded ? reposSearch : props.repos
+
+
 
     useEffect(()=>{
         GetEmoji(user.location).then((data) => setEmoji(data))
@@ -145,6 +149,7 @@ function ProfilPage(props) {
                              <h5 className='text-white'>{ user.email ? "Mail : " + user.email : null }</h5>
                             <h5 className='text-white text-xs self-end'>- { user.name ? user.name : searchUrl }</h5>
                         </div>
+                        <SocialsList />
                     </div>
                 </div>
                 <div className='border-dashed border rounded pl-4 pr-4 pt-2 pb-2 flex flex-col gap-4 block md:hidden ml-4 mr-4'>
