@@ -8,7 +8,6 @@ import Suggestions from './Suggestions'
 import PostModal from '../modal/PostModal'
 import CvRyanEzZerqti2023Image from '../../assets/CvRyanEzZerqti2023Image.png'
 import ProfilPicture from '../elements/profilPicture';
-import Form from '../elements/form';
 
 function Home(props) {
     const repos = props.repos.data
@@ -124,7 +123,6 @@ function Home(props) {
                         )
                     }) : null
                 }
-                <Form />
                 </div>
                 <Suggestions user={props.user.data} followings={props.followings.data} userEvents={props.userEvents.data} />
             </div>

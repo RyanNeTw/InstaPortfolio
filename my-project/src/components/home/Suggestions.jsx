@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Link } from "react-router-dom";
 import ProfilPicture from '../elements/profilPicture';
 import ContactModal from '../modal/ContactModal'
+import SearchBar from '../modal/SearchBarModal'
 
 function Suggestions(props) {
     const user = props.user
@@ -17,7 +18,8 @@ function Suggestions(props) {
     return(
         <>
             {modalState ? <ContactModal setAction={setModalSate} action={modalState} /> : null}
-           <div className='pt-8 flex flex-col gap-4 pl-4 pr-4 pb-3'>
+           <div className='pt-2 md:pt-8 flex flex-col gap-4 pl-4 pr-4 pb-3'>
+           <SearchBar />
             <div className='flex flex-row items-center justify-between gap-16'> 
                 <div to="/profil" className='flex flex-row items-center gap-4'>
                     <ProfilPicture user={user} userEvents={props.userEvents} width={'w-12'} height={'h-12'} />

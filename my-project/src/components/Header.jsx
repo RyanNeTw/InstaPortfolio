@@ -8,7 +8,6 @@ import ExperienceSvg from "../assets/Experience"
 import Notifications from "./elements/notifications"
 import HireMeModal from "./modal/HireMeModal"
 import PropTypes from 'prop-types';
-import SearchBarModal from './modal/SearchBarModal'
 import { StoreContext } from "../store/Store";
 import { useContext } from "react";
 import RateLimitAlert from './modal/RateLimitAlerteModal'
@@ -29,7 +28,6 @@ function Header(props) {
         <>
         <RateLimitAlert />
         {props?.user?.data?.hireable && hireMe ? <HireMeModal user={props.user.data} /> : null}
-        <SearchBarModal />
         <nav className='absolute bottom-0 border-t w-screen border-white flex flex-row justify-between pl-8 pr-8 pt-2 pb-2 bg-black '>
             <ul className='flex flex-row justify-center gap-4'>
               <li className="rounded transition">

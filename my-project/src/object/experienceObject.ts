@@ -42,7 +42,7 @@ const experience = [
 
  export const skills = [
     {
-        "image_link": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/1200px-Node.js_logo.svg.png",
+        "image_link": "https://static-00.iconduck.com/assets.00/node-js-icon-227x256-913nazt0.png",
         "image_alt" : "NodeJs's logo",
         "website": "https://nodejs.org/en",
         "language_name": "NodeJs"
@@ -84,10 +84,34 @@ const experience = [
         "language_name": "VueJs"
     },
     {
-        "image_link": " https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg",
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg",
         "image_alt" : "Tailwind's logo",
         "website": "https://tailwindcss.com/",
         "language_name": "Tailwind"
+    },
+    {
+        "image_link": "https://www.cloudwards.net/wp-content/uploads/2018/09/Shopify-Liquid-ProgLang.png",
+        "image_alt" : "Liquid's logo",
+        "website": "https://www.shopify.com/fr/partenaires/blog/liquid-langage-shopify",
+        "language_name": "Liquid"
+    },
+    {
+        "image_link": "https://avatars.githubusercontent.com/u/13810373?s=280&v=4",
+        "image_alt" : "Adonis's logo",
+        "website": "https://adonisjs.com/",
+        "language_name": "Adonis"
+    },
+    {
+        "image_link": "https://www.freepnglogos.com/uploads/logo-mysql-png/logo-mysql-mysql-logo-png-images-are-download-crazypng-21.png",
+        "image_alt" : "MySQL's logo",
+        "website": "https://dev.mysql.com/doc/",
+        "language_name": "MySQL"
+    },
+    {
+        "image_link": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/GraphQL_Logo.svg/2048px-GraphQL_Logo.svg.png",
+        "image_alt" : "GraphQl's logo",
+        "website": "https://graphql.org/learn/",
+        "language_name": "GraphQl"
     }
 ]
 
