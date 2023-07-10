@@ -2,13 +2,8 @@ import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 
 function SearchBarModal() {
-    const [closeSearchBar, setCloseSearchBar] = useState(false)
     const [search, setSearch] = useState('')
     const navigate = useNavigate();
-
-    function closeSearchBarFunction() {
-        setCloseSearchBar(!closeSearchBar)
-    }
 
     function handleChange(event) {
         setSearch(event.target.value)
