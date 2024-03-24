@@ -3,91 +3,92 @@
 @tailwind utilities;
 
 body {
-    background-color: #020202;
-    max-height: 100vh;
-    max-width: 100vw;
-    overflow: hidden;
+  background-color: #020202;
+  max-height: 100vh;
+  max-width: 100vw;
+  overflow: hidden;
 }
 .height {
-    max-height: 40rem;
+  max-height: 40rem;
 }
 .snapBar > * {
-    opacity: 100%;
+  opacity: 100%;
 }
 .snapBar {
-    opacity:99%;
+  opacity: 99%;
 }
-.test > *, .test {
-    opacity: 100%;
+.test > *,
+.test {
+  opacity: 100%;
 }
 
 .container {
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
-    scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
 }
-.container::-webkit-scrollbar { 
-    display: none;  /* Safari and Chrome */
+.container::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
 }
 
 .handShake {
-    animation: handShakeAnimation 1s linear infinite;
+  animation: handShakeAnimation 1s linear infinite;
 }
 @keyframes handShakeAnimation {
-    0% {
-      transform: rotate(0deg);
-    }
-    50% {
-      transform: rotate(60deg);
-    }
-    100% {
-        transform: rotate(0deg);
-      }
+  0% {
+    transform: rotate(0deg);
   }
+  50% {
+    transform: rotate(60deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
 
-  @keyframes heartBeat {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.3);
-    }
-    100% {
-      transform: scale(1);
-    }
+@keyframes heartBeat {
+  0% {
+    transform: scale(1);
   }
-  
-  .like-button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .like-icon {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    background-image: url('path/to/like-icon.png');
-    background-size: cover;
-    transition: transform 0.3s ease-in-out;
-  }
-  
-  .like-button:hover .like-icon {
+  50% {
     transform: scale(1.3);
   }
-  
-  .like-button:active .like-icon {
-    animation: heartBeat 0.5s;
+  100% {
+    transform: scale(1);
   }
-  
-  .triangleCode{
-    display : inline-block;
-    height : 0;
-    width : 0;
-    border-right : 0.5rem solid transparent;
-    border-bottom : 1rem solid #facc15;
-    border-left : 0.5rem solid transparent;
-   }
+}
 
-   .alerteSvg:hover + .alert {
-    display: block;
-   }
+.like-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.like-icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-image: url("path/to/like-icon.png");
+  background-size: cover;
+  transition: transform 0.3s ease-in-out;
+}
+
+.like-button:hover .like-icon {
+  transform: scale(1.3);
+}
+
+.like-button:active .like-icon {
+  animation: heartBeat 0.5s;
+}
+
+.triangleCode {
+  display: inline-block;
+  height: 0;
+  width: 0;
+  border-right: 0.5rem solid transparent;
+  border-bottom: 1rem solid #facc15;
+  border-left: 0.5rem solid transparent;
+}
+
+.alerteSvg:hover + .alert {
+  display: block;
+}

@@ -1,39 +1,40 @@
 import { emojiType } from "../types/gitHubTypes";
 
-
-const url = `http://api.ryantw.net/api/`
+const url = `http://127.0.0.1:3333/api/`; //`http://api.ryantw.net/api/`
 
 type Mail = {
-    myMail: string;
-    otherMail: string;
-    subject: string | null;
-    text: string;
-  };
+  myMail: string;
+  otherMail: string;
+  subject: string | null;
+  text: string;
+};
 
-  const header = {
-    "Access-Control-Allow-Origin": "http://api.ryantw.net",
-    "Content-Type": "application/json",
+const header = {
+  "Access-Control-Allow-Origin": "http://api.ryantw.net",
+  "Content-Type": "application/json",
+};
+
+async function SendMail(body: Mail): Promise<number> {
+  const res = await fetch(url + "mail/send-email", {
+    method: "POST",
+    mode: "cors",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  });
+
+  return res.status;
 }
 
-async function SendMail (body: Mail): Promise<number> {
-    const res = await fetch(url + 'mail/send-email', {
-        method: 'POST',
-        mode: "cors",
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(body)
-    })
+export const GetEmoji = async (search: string): Promise<emojiType[]> => {
+  const res = await fetch(url + `emoji/${search}`, {
+    headers: header,
+    mode: "cors",
+  });
+  const emoji = await res.json();
+  return emoji.data;
+};
 
-    return res.status
-
-}
-
-export const  GetEmoji = async (search: string): Promise<emojiType[]> => {
-    const res = await fetch(url + `emoji/${search}`, {headers: header,  mode: "cors"});
-    const emoji = await res.json();
-    return emoji.data;
-}
-
-export default SendMail
+export default SendMail;
