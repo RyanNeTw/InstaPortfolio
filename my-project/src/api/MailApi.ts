@@ -1,6 +1,6 @@
 import { emojiType } from "../types/gitHubTypes";
 
-const url = `http://127.0.0.1:3333/api/`; //`http://api.ryantw.net/api/`
+const url = `https://api.ryantw.net/api/`
 
 type Mail = {
   myMail: string;

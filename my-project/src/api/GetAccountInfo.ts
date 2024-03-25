@@ -17,11 +17,11 @@ type error = {
   };
 };
 
-const owner = "RyanNeTw";
-const url = `http://127.0.0.1:3333/api/user/`;
+const owner = `RyanNeTw`;
+const url = `https://api.ryantw.net/api/user/`;
 
 const header = {
-  "Access-Control-Allow-Origin": "http://api.ryantw.net",
+  "Access-Control-Allow-Origin": "https://api.ryantw.net",
   "Content-Type": "application/json",
 };
 
